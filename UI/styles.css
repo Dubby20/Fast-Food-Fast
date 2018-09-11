@@ -170,14 +170,14 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
-	.signUp-form {
+	.signUp-form .login-form{
 		flex: 0 0 50%;
 		max-width: 50%;
 	}
 }
 
 @media only screen and (min-width: 576px) {
-	.signUp-form {
+	.signUp-form .login-form{
 		flex: 0 0 100%;
 		max-width: 100%;
 	}
@@ -253,7 +253,7 @@ a {
 
 a:hover {
 	color: #fff;
-	background-color: #d35400;
+	background-color: #ff5722;
 }
 
 a:active {
@@ -477,13 +477,13 @@ footer .inner {
 	padding-top: 20px;
 }
 
-.footer-row .signUp-row{
+.footer-row{
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0px -15px;
 }
 
-.footer-contact .signUp-container {
+.footer-contact {
 	width: 100%;
 	min-height: 1px;
 	padding: 0px 15px;
@@ -512,7 +512,7 @@ footer .inner .contact li {
 
 footer .inner li {
 	color: rgba(34, 34, 34, 0.95);
-	padding: 0 0 20px;
+	padding: 0 0 18px;
 }
 
 footer .inner .contact li i {
@@ -599,6 +599,13 @@ footer .footer-row .social li a {
 	margin: 140px auto;
 }
 
+.login-form{
+  position: relative;
+  width: 50%;
+	min-height: 1px;
+	margin: 140px auto;
+}
+
 .signUp-login {
   background: #f5f5f5;
   padding: 16px;
@@ -663,6 +670,7 @@ input {
 
 label {
   display: inline-block;
+  /* margin-bottom: .5rem */
 }
 
 .signUp-login .form-link input {
@@ -681,6 +689,32 @@ label {
   border: 1px solid #ff5722;
 }
 
-.signUp-div {
+.login-btn {
+  background: #ff5722;
+  border-color: #ff5722;
+  padding: 0 25px;
+  color: #fff;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 24px;
+  font-weight: 700;
+  border: 1px solid #ff5722;
+}
+
+
+.signUp-div{
   text-align: center;
+}
+
+.login-div {
+  text-align: center;
+}
+
+.signUp-login .form-link .login {
+  color: #757575;
+  font-weight: 400;
+}
+
+.float-right {
+  float: right !important
 }
