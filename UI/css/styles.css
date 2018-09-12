@@ -233,7 +233,7 @@ body {
 
 .navbar-fixed-top {
 	position: fixed;
-	top: 0;
+  top: 0;
 	right: 0;
 	left: 0;
 	z-index: 1030;
@@ -243,7 +243,7 @@ body {
 
 .container {
 	padding-left: 20px;
-	padding-right: 0px;
+	padding-right: 0;
 }
 
 .main-header .logo {
@@ -277,7 +277,7 @@ a:active {
 }
 
 .right-menu {
-	float: right !important;
+  float: right !important;
 }
 
 .menu-items {
@@ -304,7 +304,7 @@ a:active {
 	position: relative;
 	overflow: hidden;
 	z-index: 1;
-	background: url(./images/background-image.jpg);
+	background: url(../images/background-image.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -739,7 +739,126 @@ label {
 	float: right !important;
 }
 
-.order-detail .order-image {
+.food-menu {
+  margin: 130px 0;
+}
+
+.menu-content.menu-layout {
+  margin: 0 -15px;
+}
+
+.menu-content.menu-column li.product-details:nth-child(2n+1) {
+  clear: both;
+}
+
+.menu-content.menu-column li.product-details {
+  width: 50%;
+  float: left;
+}
+
+.menu-content.menu-layout .product-details {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}
+
+.menu-content.menu-layout li {
+  list-style: none;
+}
+
+.menu-content.menu-layout .product-details .product-section {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  display: table;
+  width: 100%;
+  position: relative;
+}
+
+.menu-content.menu-layout .product-details .item-left {
+  width: calc(100% - 80px);
+  display: table-cell;
+  vertical-align: top;
+  text-align: left;
+}
+
+.menu-content.menu-layout .product-details a.image-popup {
+  width: 110px;
+  float: left;
+  margin-right: 20px;
+  position: relative;
+  z-index: 9;
+}
+
+.menu-content.menu-layout .product-image a.image-popup img {
+  max-width: 100%;
+  border-radius: 5px 0 0 5px;
+}
+
+.menu-content.menu-layout .product-details .product-title {
+  font-size: 16px;
+  line-height: 1.6em;
+  margin: 14px 0 0;
+  position: relative;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #333;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.menu-content.menu-layout .product-details .product-description {
+  padding-left: 130px;
+  padding-right: 10px;
+}
+
+.product-description p {
+  margin-bottom: 0;
+}
+
+.menu-content.menu-layout .product-details .product-price {
+  width: 80px;
+  padding-left: 10px;
+  display: table-cell;
+  vertical-align: top;
+  text-align: left;
+  padding-top: 15px;
+}
+
+.menu-content.menu-layout .product-details .product-price ul li{
+  margin: 0;
+}
+
+.menu-content.menu-layout li {
+  list-style: none;
+}
+
+.menu-content.menu-layout .product-details .product-price .name {
+  display: block;
+}
+
+.menu-content.menu-layout .product-details .product-price .price {
+  font-size: 16px;
+  line-height: 1.6em;
+  color: #333;
+  font-weight: 700;
+}
+
+.clear {
+  clear: both;
+}
+
+.menu-content.menu-layout .product-details .product-section .price-name {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-transform: uppercase;
+  padding: 0 10px;
+  border-radius: 0 0 5px 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* .order-detail .order-image {
   border-radius: 4px;
   border: 1px solid #e5e5e5;
   overflow: hidden;
@@ -765,7 +884,7 @@ line-height: 26px;
   font-size: 14px;
   color: #757575;
   margin:0 0 24px;
-}
+} */
 
 /* #quantity label {
   font-weight: 600;
