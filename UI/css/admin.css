@@ -1,0 +1,46 @@
+@media only screen and (max-width: 767px) {
+  .menu-content.menu-column li.product-details {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-content.menu-layout .product-details .product-image a.image-popup img {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-content.menu-layout .product-details .product-image .product-price {
+    margin-top: 0;
+    padding: 0 15px 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-content.menu-layout .product-details .product-price {
+    width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .food-menu {
+    margin: 250px 10px;
+  }
+}
+
+
+
+.dashboard-container {
+  margin: 100px 10px;
+}
+
+.dashboard {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.ali {
+  float: right;
+}

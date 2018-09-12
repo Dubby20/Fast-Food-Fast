@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Leckerli+One|Lily+Script+One|Lobster|Lobster+Two|Pacifico|Playball"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="page-wrapper">
+    <header class="main-header">
+        <nav id="primary-menu" class="navbar navbar-fixed-top">
+          <div class="container">
+            <div class="logo">
+              <a href="../index.html" class="brand-name">Limelight</a>
+            </div>
+            <div class="right-menu">
+              <ul class="menu-items menu-left menu-collapse">
+                <li class="menu-list ">
+                  <a href="allMenus.html" class="menu-link btn">Food Menus</a>
+                </li>
+                <li class="menu-list">
+                  <a href="adminDashboard.html" class="menu-link btn">Dashboard</a>
+                </li>
+                <li class="menu-list">
+                  <a href="adminOrders.html" class="menu-link btn">Manage Orders</a>
+                </li>
+                <li class="menu-list">
+                  <a href="#" class="menu-link btn">Log out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+        <div class="menu-container dashboard-container">
+          <div class="dashboard">
+              <h1 class="">Hi, Admin</h1>
+              <div class="row ali">
+                <button class="btn order-button modalBtn ">Add Menu</button>       
+    
+    </div>
+    </div>
+</div>
+
+    <footer>
+            <div class="footer-bottom">
+                <div class="footer-container">
+                  <div class="row footer-row">
+                    <div class="footer-text">
+        <p >Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <head>
+    <link rel="stylesheet" href="/admin-css/createItems.css">
+</head>
+
+<body>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>Add New Menu Item</h4>
+            </div>
+            <form id="createItemForm" method="post" action="/admin/createItem" enctype="multipart/form-data">
+                <div class="card-block">
+                    <div class="form-group row">
+                        <input type="hidden" name="itemID" id="newMenuId" value="1">
+                        <input type="hidden" name="station" id="newCookStation" value="1">
+                        <label for="inputCreateItemName" class="col-2 col-form-label">Item Name</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text"  id="inputCreateItemName" name="name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputCreateItemDesc" class="col-2 col-form-label">Description</label>
+                        <div class="col-10">
+                            <textarea  class="form-control" id="inputCreateItemDesc" rows="5" name="desc"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputCreateItemPrice" class="col-2 col-form-label">Price</label>
+                        <div class="col-10">
+                            <input class="form-control" type="number" id="inputCreateItemPrice" name="price" step="0.01"/ >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="radioCreateItemCategory" class="col-2 col-form-label">Category</label>
+                        <div class="col-10">
+                            <select class="form-control" id="radioCreateItemCategory" name="category">
+                                <option value="1" selected="selected">Main</option>
+                                <option value="2">Side</option>
+                                <option value="3">Beverage</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputCreateItemImage" class="col-2 col-form-label">Image (Max 1MB)</label>
+                        <div class="col-10">
+                            <input type='file' id='inputCreateItemImage' name='food_image'/>
+                        </div>
+                    </div>
+                    <div class="text-center" id="statusCreateItem"></div>
+                </div>
+                <div class="card-footer text-right">
+                    <button type="submit" id="buttonSubmitNewItem" class="btn btn-primary">Create New Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body> -->
