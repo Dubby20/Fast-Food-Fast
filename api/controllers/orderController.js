@@ -17,4 +17,22 @@ return response.status(200).json({
 });
 };
 
-export default { allOrders, getOrderId };
+const postOrders = (request, response) => {
+  const addOrders = {
+    orderId: orders.length + 1,
+    userId: request.body.userId,
+    foodMenu: request.body.foodMenu,
+    quantity: request.body.quantity,
+    totalPrice: request.body.totalPrice,
+    deliveryAddress: request.body.deliveryAddress,
+    dateOrdered: new Date(),
+    status: request.body.status
+  };
+  orders.push(addOrders);
+  return response.status(201).json({
+    addOrders,
+    message: 'Orders added successfully'
+  });
+};
+
+export default { allOrders, getOrderId, postOrders };
