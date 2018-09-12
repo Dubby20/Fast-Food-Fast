@@ -1,0 +1,66 @@
+{
+  "name": "fast-food-fast",
+  "version": "1.0.0",
+  "description": "Fast-Food-Fast is a food delivery service app for a restaurant",
+  "main": "server.js",
+  "engines": {
+    "node": "8.11.3"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "scripts": {
+    "mocha": "mocha --compilers js:babel-register",
+    "babel-node": "babel-node --presets=env",
+    "start:dev": "nodemon --exec npm run babel-node -- api/server.js",
+    "start": "nodemon --exec npm run babel-node -- api/server.js",
+    "build": "babel ./ -d dist",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc reports --reporter=text-lcov | coveralls",
+    "test": "npm run init_db && nyc --reporter=text mocha  --timeout 100000 --compilers js:babel-register ./api/test/*.js --exit --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dubby20/Fast-Food-Fast.git"
+  },
+  "keywords": [
+    "fast-food",
+    "burger",
+    "chicken",
+    "chips",
+    "pizza"
+  ],
+  "author": "Jacinta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dubby20/Fast-Food-Fast/issues"
+  },
+  "homepage": "https://github.com/Dubby20/Fast-Food-Fast#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "body-parser": "^1.18.3",
+    "coveralls": "^3.0.2",
+    "express": "^4.16.3",
+    "http-errors": "^1.7.0",
+    "istanbul": "^0.4.5",
+    "mocha-lcov-reporter": "^1.3.0",
+    "morgan": "^1.9.0",
+    "nyc": "^12.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3"
+  }
+}
