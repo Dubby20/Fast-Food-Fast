@@ -10,15 +10,19 @@ export class OrderValidator {
     this.errMessage;
   }
 
+  static checkForNumber(data, regex) {
+    return !regex.test(data) || typeof data !== 'number';
+  }
+
   testQuantity(quantity) {
-    if (!quantityRegex.test(quantity) || typeof quantity !== 'number') {
+    if (OrderValidator.checkForNumber(quantity, quantityRegex)) {
       this.passing = false;
       this.errMessage = quantityErrMessage;
     }
   }
 
   testTotalPrice(totalPrice) {
-    if (!totalPriceRegex.test(totalPrice) || typeof totalPrice !== 'number') {
+    if (OrderValidator.checkForNumber(totalPrice, totalPriceRegex)) {
       this.passing = false;
       this.errMessage = totalPriceErrMessage;
     }
