@@ -19,7 +19,7 @@
     "build": "babel ./ -d dist",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc reports --reporter=text-lcov | coveralls",
-    "test": "npm run init_db && nyc --reporter=text mocha  --timeout 100000 --compilers js:babel-register ./api/test/*.js --exit --reporter spec"
+    "test": "npm run && nyc --reporter=text mocha  --timeout 100000 --compilers js:babel-register ./api/tests/*.js --exit --reporter spec"
   },
   "repository": {
     "type": "git",

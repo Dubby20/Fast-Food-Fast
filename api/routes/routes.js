@@ -1,7 +1,9 @@
 import express from 'express';
 import orderController from '../controllers/orderController';
+// import OrderValidator from '../middlewares/validateOrders';
 
 const router = express.Router();
+
 
 router.get('/orders', orderController.allOrders);
 router.get('/orders/:id', orderController.getOrderId);
