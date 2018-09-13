@@ -37,7 +37,9 @@ const postOrders = (request, response) => {
 
 const updateStatus = (request, response) => {
   const orderStatus = orders.find(item => item.orderId === parseInt(request.params.id, 10));
-  if (!orderStatus) return response.status(404).send('The status with the given order ID was not found');
+  if (!orderStatus) return response.status(404).json({
+      message: 'The status with the given order ID is not found'
+    });
   const id = orders.indexOf(orderStatus);
   orderStatus.status = request.body.status;
   orders[id] = orderStatus;
