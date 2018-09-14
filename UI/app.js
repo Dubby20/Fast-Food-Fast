@@ -1,8 +1,9 @@
 const modal = document.getElementById('modalPage');
 const closeBtn = document.querySelector('.close-btn');
+const actionBtn = document.querySelector('.action-btn')
 const modalBtn = document.querySelectorAll('.modalBtn');
  for (let i = 0; i < modalBtn.length; i++ ) {
-  modalBtn[i].addEventListener('click', function() {
+  modalBtn[i].addEventListener('click', () => {
      modal.style.display = 'block';
    })
  }
@@ -20,3 +21,10 @@ window.onclick = (event) => {
     modal.style.display = "none";
   }
 }
+
+// function myFunction(x) {
+//   x.classList.toggle("fa-thumbs-down");
+// }
+actionBtn.addEventListener('click', () => {
+
+})

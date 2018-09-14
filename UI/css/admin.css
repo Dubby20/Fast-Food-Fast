@@ -187,3 +187,13 @@ td {
   outline: none;
   box-shadow:none;
 }
+
+.action-btn {
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.action-btn:hover {
+color: darkblue;
+}
