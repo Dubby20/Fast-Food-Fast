@@ -197,3 +197,14 @@ td {
 .action-btn:hover {
 color: darkblue;
 }
+
+.summary {
+  padding: 2px 16px;
+  color: #000;
+  font-size: 24px;
+  font-family: 'Lobster', cursive;
+}
+
+.summary-div{
+  text-align: center;
+} 
