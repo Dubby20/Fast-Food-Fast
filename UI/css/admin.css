@@ -83,11 +83,11 @@
   .table-responsive > .table-border > tbody >  tr > td:nth-child(odd) {
     background-color: #f5f5f5;
   }
-  .table-responsive > .table-hover > tbody > tr:hover > td,
-  .table-responsive > .table-hover > tbody > tr:hover{
+  .table-responsive  > tbody > tr:hover > td,
+  .table-responsive > tbody > tr:hover{
    background-color: #fff;
   }
-  .table-responsive > .table-hover > tbody > tr > td:hover {
+  .table-responsive > tbody > tr > td:hover {
     background-color: rgba(0,0,0,0.12);
   }
 }
