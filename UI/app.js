@@ -7,10 +7,6 @@ const modalBtn = document.querySelectorAll('.modalBtn');
      modal.style.display = 'block';
    })
  }
-
-// modalBtn.addEventListener('click', function() {
-// modal.style.display = 'block';
-// });
  
 closeBtn.onclick = () => {
   modal.style.display = 'none';

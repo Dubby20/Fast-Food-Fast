@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Orders Lists</title>
+  <title>Orders History</title>
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Leckerli+One|Lily+Script+One|Lobster|Lobster+Two|Pacifico|Playball"
     rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/admin.css">
 </head>
 
 <body>
@@ -19,19 +19,10 @@
       <nav id="primary-menu" class="navbar navbar-fixed-top">
         <div class="container">
           <div class="logo">
-            <a href="../index.html" class="brand-name">Limelight</a>
+            <a href="index.html" class="brand-name">Limelight</a>
           </div>
           <div class="right-menu">
             <ul class="menu-items menu-left menu-collapse">
-              <li class="menu-list ">
-                <a href="allMenus.html" class="menu-link btn">Food Menus</a>
-              </li>
-              <li class="menu-list">
-                <a href="adminDashboard.html" class="menu-link btn">Dashboard</a>
-              </li>
-              <li class="menu-list">
-                <a href="ordersList.html" class="menu-link btn">Manage Orders</a>
-              </li>
               <li class="menu-list">
                 <a href="#" class="menu-link btn">Log out</a>
               </li>
@@ -43,9 +34,9 @@
 
     <div class="dashboard-container">
       <div class="dashboard">
-        <h1 class="">Hi, Admin</h1>
+        <h1 class="">Hi, Jacinta</h1>
         <div class="summary-div">
-          <h2 class="summary">Orders Summary</h2>
+          <h2 class="summary">Orders History</h2>
         </div>
       </div>
 
@@ -56,13 +47,11 @@
               <th>S/No</th>
               <th>Date</th>
               <th>OrderID</th>
-              <th>Customer</th>
               <th>Food Item</th>
-              <th>Action</th>
               <th>Quantity</th>
-              <th>Address</th>
               <th>Total Price</th>
               <th>Status</th>
+
             </tr>
           </thead>
           <tbody>
@@ -70,64 +59,51 @@
               <td item-data="No">1</td>
               <td item-data="Date">3/10/2018</td>
               <td item-data="ID">23</td>
-              <td item-data="Customer">Jacinta</td>
               <td item-data="Item">Beef Pizza</td>
-              <td item-data="Action"><i class="fa fa-thumbs-up action-btn"></i></td>
               <td item-data="Quantity">1</td>
-              <td item-data="Address">Bourdillon Lagos</td>
               <td item-data="Price">2000</td>
-              <td item-data="Status">Completed: <input type="checkbox" id="myCheck"  onclick="myFunction()"></td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
+
+
             </tr>
             <tr>
               <td item-data="No">2</td>
               <td item-data="Date">3/10/2018</td>
               <td item-data="ID">22</td>
-              <td item-data="Customer">Stanley</td>
               <td item-data="Item">Chicken Wings</td>
-              <td item-data="Action"><i class="fa fa-thumbs-up action-btn"></i></td>
               <td item-data="Quantity">2</td>
-              <td item-data="Address">Alfred Rewane Road Lagos</td>
               <td item-data="Price">3000</td>
-              <td item-data="Status">Completed: <input type="checkbox" id="myCheck"  onclick="myFunction()"></td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
             </tr>
 
             <tr>
               <td item-data="No">3</td>
               <td item-data="Date">3/10/2018</td>
               <td item-data="ID">23</td>
-              <td item-data="Customer">Olumide</td>
               <td item-data="Item">Cheeseburger</td>
-              <td item-data="Action"><i class="fa fa-thumbs-up action-btn"></i></td>
               <td item-data="Quantity">2</td>
-              <td item-data="Address">Banana Island Lagos</td>
               <td item-data="Price">2000</td>
-              <td item-data="Status">Completed: <input type="checkbox" id="myCheck"  onclick="myFunction()"></td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
             </tr>
 
             <tr>
               <td item-data="No">4</td>
               <td item-data="Date">3/10/2018</td>
               <td item-data="ID">24</td>
-              <td item-data="Customer">Alex</td>
               <td item-data="Item">Fried Chicken</td>
-              <td item-data="Action"><i class="fa fa-thumbs-up action-btn"></i></td>
               <td item-data="Quantity">1</td>
-              <td item-data="Address">Lekki Lagos</td>
               <td item-data="Price">2000</td>
-              <td item-data="Status">Completed: <input type="checkbox" id="myCheck"  onclick="myFunction()"></td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
             </tr>
 
             <tr>
               <td item-data="No">5</td>
               <td item-data="Date">3/10/2018</td>
               <td item-data="ID">25</td>
-              <td item-data="Customer">Bukky</td>
               <td item-data="Item">Fried Rice</td>
-              <td item-data="Action"><i class="fa fa-thumbs-up action-btn"></i></td>
               <td item-data="Quantity">1</td>
-              <td item-data="Address">Awolowo Road Lagos</td>
               <td item-data="Price">1500</td>
-              <td item-data="Status">Completed: <input type="checkbox" id="myCheck"  onclick="myFunction()"></td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
             </tr>
           </tbody>
         </table>
@@ -148,7 +124,7 @@
     </div>
   </footer>
   </div>
-  <script src="../app.js"></script>
+  <script src="./app.js"></script>
 </body>
 
 </html>
