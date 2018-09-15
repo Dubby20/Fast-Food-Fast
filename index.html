@@ -22,17 +22,17 @@
           </div>
           <div class="right-menu">
             <ul class="menu-items menu-left menu-collapse">
+              <li class="menu-list">
+                <a href="./Admin/AdminDashboard.html" class="menu-link btn">Admin</a>
+              </li>
+              <li class="menu-list">
+                <a href="ordersHistory.html" class="menu-link btn">Orders History</a>
+              </li>
               <li class="menu-list ">
                 <a href="login.html" class="menu-link btn">Login</a>
               </li>
               <li class="menu-list">
                 <a href="signUp.html" class="menu-link btn">Sign Up</a>
-              </li>
-              <li class="menu-list">
-                <a href="./admin/adminDashboard.html" class="menu-link btn">Admin</a>
-              </li>
-              <li class="menu-list">
-                <a href="ordersHistory.html" class="menu-link btn">Orders</a>
               </li>
             </ul>
           </div>
@@ -45,7 +45,6 @@
           <h1 class="welcome">Welcome to Limelight</h1>
           <p class="center-paragraph headline1">We Don't Just Cook Food</p>
           <p class="center-paragraph headline2">We make Delicious Food</p>
-          <a href="" class="btn btn-wide btn-primary modalBtn">Order Now</a>
         </div>
       </div>
     </section>
@@ -56,13 +55,10 @@
         <div class="row">
           <div class="column">
             <div class="card">
-              <div class="card-overlay">
-                
-              </div>
               <div class="card-image">
                 <img src="./images/cheeseburger.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Cheeseburger <p>Price: N1000</p>
+              <div class="image-title">Cheeseburger <p>Price: <span>&#8358;</span>1000</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -81,7 +77,7 @@
               <div class="card-image">
                 <img src="./images/pizza-with-tomatoes.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Pizza with tomatoes <p>Price: N2500</p>
+              <div class="image-title">Pizza with tomatoes <p>Price: <span>&#8358;</span>2500</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -99,7 +95,7 @@
               <div class="card-image">
                 <img src="./images/seafood-pizza.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Seafood pizza<p>Price: N3000</p>
+              <div class="image-title">Seafood pizza<p>Price: <span>&#8358;</span>3000</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -118,7 +114,7 @@
               <div class="card-image">
                 <img src="./images/chicken-wings-fried.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Fried chicken wings <p>Price: N1000</p>
+              <div class="image-title">Fried chicken wings <p>Price: <span>&#8358;</span>1000</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -140,7 +136,7 @@
               <div class="card-image">
                 <img src="./images/tasty-burguer-with-chips.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Burger with chips <p>Price: N1500</p>
+              <div class="image-title">Burger with chips <p>Price: <span>&#8358;</span>1500</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -159,7 +155,7 @@
               <div class="card-image">
                 <img src="./images/fried-chicken.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Fried chicken<p>Price: N1500</p>
+              <div class="image-title">Fried chicken<p>Price: <span>&#8358;</span>1500</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -179,7 +175,7 @@
               <div class="card-image">
                 <img src="./images/spaghetti-with-tomatoes-and-cheese.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Spaghetti with tomatoes and cheese <p>Price: N2000</p>
+              <div class="image-title">Spaghetti with tomatoes and cheese <p>Price: <span>&#8358;</span>2000</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -199,7 +195,7 @@
               <div class="card-image">
                 <img src="./images/sandwich.jpg" alt="" class="img-fluid">
               </div>
-              <div class="image-title">Sandwich<p>Price: N1000</p>
+              <div class="image-title">Sandwich<p>Price: <span>&#8358;</span>1000</p>
               </div>
               <div class="image-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, provident.
@@ -252,7 +248,7 @@
         <div class="footer-container">
           <div class="row footer-row">
             <div class="footer-text">
-<p >Copyright &copy Limelight Food Delivery app 2018. All Rights Reserved.</p>
+<p >Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
             </div>
             <!-- <div class="social-icons">
                <ul class="list-inline social">
@@ -292,9 +288,9 @@
                   <input type="number" id="input-quantity" placeholder="Quantity" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="fullname">Product:</label>
+                    <label for="fullname">Food Name:</label>
                     <select name="text" class="form-control">
-                        <option value="none">-- Please choose a product --</option>
+                        <option value="none">-- Please choose a food name --</option>
                       <option value="Cheeseburger">Cheeseburger</option> 
                       <option value="Pizza with tomatoes">Pizza with tomatoes</option>
                       <option value="Seafood pizza">Seafood pizza</option>
