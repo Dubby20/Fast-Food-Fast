@@ -24,13 +24,13 @@
           <div class="right-menu">
             <ul class="menu-items menu-left menu-collapse">
               <li class="menu-list ">
-                <a href="allMenus.html" class="menu-link btn">Food Menus</a>
+                <a href="FoodMenus.html" class="menu-link btn">Food Menus</a>
               </li>
               <li class="menu-list">
-                <a href="adminDashboard.html" class="menu-link btn">Dashboard</a>
+                <a href="AdminDashboard.html" class="menu-link btn">Dashboard</a>
               </li>
               <li class="menu-list">
-                <a href="ordersList.html" class="menu-link btn">Manage Orders</a>
+                <a href="OrdersList.html" class="menu-link btn">Manage Orders</a>
               </li>
               <li class="menu-list">
                 <a href="#" class="menu-link btn">Log out</a>
@@ -45,7 +45,7 @@
       <div class="dashboard">
         <h1 class="">Hi, Admin</h1>
         <div class="row align-btn">
-          <button class="btn order-button modalBtn"></i>Add Food Item</button>
+          <button class="btn order-button modalBtn"><i class="fa fa-plus"></i> Add Food Item</button>
         </div>
       </div>
 
@@ -55,11 +55,10 @@
             <tr>
               <th>S/No</th>
               <th>Date</th>
-              <th>Food Item</th>
+              <th>Food Name</th>
               <th>Image</th>
               <th>Amount</th>
-              <th>Action</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -70,9 +69,9 @@
               <td item-data="Image">
                 <img src="../images/pizza-beef-pizza.jpg" alt="" class="img-style" height="70" width="70">
               </td>
-              <td item-data="Item">2000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button></td>
-              <td item-data="Action"><button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+              <td item-data="Item"><span>&#8358;</span>2000</td>
+              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
             </tr>
             <tr>
               <td item-data="No">2</td>
@@ -81,9 +80,9 @@
               <td item-data="Image">
                 <img src="../images/chicken-wings-fried.jpg" alt="" class="img-style" height="70" width="70">
               </td>
-              <td item-data="Item">1500</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button></td>
-              <td item-data="Action"><button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+              <td item-data="Item"><span>&#8358;</span>1500</td>
+              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
             </tr>
 
             <tr>
@@ -93,21 +92,22 @@
               <td item-data="Image">
                 <img src="../images/cheeseburger.jpg" alt="" class="img-style" height="70" width="70">
               </td>
-              <td item-data="Item">1000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button></td>
-              <td item-data="Action"><button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+              <td item-data="Item"><span>&#8358;</span>1000</td>
+              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
             </tr>
 
             <tr>
               <td item-data="No">4</td>
               <td item-data="Date">3/10/2018</td>
-              <td item-data="Item">Fried Chicken</td>
+              <td item-data="Item">Fried Chicken with Vegetables and Dipping Sauce</td>
               <td item-data="Image">
-                <img src="../images/fried-chicken-with-vegetables-and-dipping-sauce.jpg" alt="" class="img-style" height="70" width="70">
+                <img src="../images/fried-chicken-with-vegetables-and-dipping-sauce.jpg" alt="" class="img-style"
+                  height="70" width="70">
               </td>
-              <td item-data="Item">3000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button></td>
-              <td item-data="Action"><button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+              <td item-data="Item"><span>&#8358;</span>3000</td>
+              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
             </tr>
 
             <tr>
@@ -117,9 +117,9 @@
               <td item-data="Image">
                 <img src="../images/fried-chicken.jpg" alt="" class="img-style" height="70" width="70">
               </td>
-              <td item-data="Item">1000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button></td>
-              <td item-data="Action"><button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+              <td item-data="Item"><span>&#8358;</span>1000</td>
+              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
             </tr>
           </tbody>
         </table>
@@ -148,8 +148,8 @@
       <div class="modal-body">
         <form action="" method="POST">
           <div class="form-group">
-            <label for="productName">Product Name:</label>
-            <input type="text" class="form-control" placeholder="Product Name">
+            <label for="productName">Food Name:</label>
+            <input type="text" class="form-control" placeholder="Food Name">
           </div>
           <div class="form-group">
             <label for="description">Description:</label>
@@ -161,7 +161,7 @@
           </div>
           <div class="form-group">
             <label for="image">Image (Max 1MB)</label>
-            <input type="file" id="input-quantity" placeholder="Food Image" class="form-control">
+            <input type="file" accept=".png, .jpg, .jpeg" id="input-quantity" placeholder="Food Image" class="form-control">
           </div>
         </form>
       </div>

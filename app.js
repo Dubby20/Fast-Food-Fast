@@ -18,9 +18,7 @@ window.onclick = (event) => {
   }
 }
 
-// function myFunction(x) {
-//   x.classList.toggle("fa-thumbs-down");
-// }
-actionBtn.addEventListener('click', () => {
 
-})
+// actionBtn.addEventListener('click', () => {
+
+// })
