@@ -1,10 +1,9 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../server';
 
 import {
   OrderValidator
-} from '../middlewares/validateOrders';
+} from '../Helpers/ValidateOrders';
 
 const {
   expect
@@ -18,15 +17,16 @@ describe('Validate  orders', () => {
     ordersValidator = new OrderValidator();
     done();
   });
-  it('should validate the this.testQuantity function', (done) => {
-    ordersValidator.testQuantity(10);
-    expect(ordersValidator.passing).to.equal(true);
-    expect(ordersValidator.errMessage).to.equal(undefined);
-    ordersValidator.testQuantity('4000');
-    expect(ordersValidator.passing).to.equal(false);
-    expect(ordersValidator.errMessage).to.equal('Quantity must only contain numbers and must not be empty');
-    done();
-  });
+  // it('should validate the this.testQuantity function', (done) => {
+  //   ordersValidator.testQuantity(10);
+  //   expect(ordersValidator.passing).to.equal(true);
+  //   expect(ordersValidator.errMessage).to.equal(undefined);
+  //   ordersValidator.testQuantity('4000');
+  //   expect(ordersValidator.passing).to.equal(false);
+  //   expect(ordersValidator.errMessage).to.equal(
+    // 'Quantity must only contain numbers and must not be empty');
+  //   done();
+  // });
 
   it('should validate the this.testTotalPrice function', (done) => {
     ordersValidator.testTotalPrice(4000);
@@ -45,10 +45,8 @@ describe('Validate  orders', () => {
   it('should validate the this.testForEmptyStringInput function', (done) => {
     const orders = {
       userId: 3,
-      foodMenu: [],
-      quantity: 2,
+      foodItems: [],
       totalPrice: 4000,
-      deliveryAddress: 'Alfred Rewane Road Lagos',
       status: 'Pending'
     };
     ordersValidator.testForEmptyStringInput(orders);
@@ -58,7 +56,7 @@ describe('Validate  orders', () => {
       quantity: ''
     });
     expect(ordersValidator.passing).to.equal(false);
-    expect(ordersValidator.errMessage).to.equal('Enter valid input data');
+    expect(ordersValidator.errMessage).to.equal('Input fields must not be empty');
     done();
   });
 });
