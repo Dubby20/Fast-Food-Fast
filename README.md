@@ -8,6 +8,7 @@
 ## Fast-Food-Fast
 Fast-Food-Fast is a food delivery service app for a restaurant
 
++ Hosted Github Page [Limelight](https://dubby20.github.io/Fast-Food-Fast/)
 
 ## Features
 + Users can create account.
@@ -64,23 +65,17 @@ List of endpoints exposed by the service
 
 * GET `/api/v1/orders/<orderId>` Use this route to fetch a specific order.
 
-* POST `/api/v1/orders` Use this route to Place a new order. The following fields are required:
+* POST `/api/v1/orders` Use this route to place a new order. The following fields are required:
   * `userId` The user Id
   * `foodItems` An array of objects containing `foodId` and `quantity`
   * `totalPrice` The total price of food ordered
   * `status` The status of an order
-  
+
 * PUT `/api/v1/orders/<orderId>`Use this route to update the status of an order. The following field is required:
   * `status` The status of an order
 
-<!-- <table>
-<tr><th>Http verbs</th><th>Endpoints</th><th> Functionality </th></tr>
-<tr><td>GET</td><td>api/v1/orders </td><td> Gets all orderss</td></tr>
-<tr><td>GET</td><td>api/v1/orders/:orderId</td><td>Gets an order by id</td></tr>
-<tr><td>POST</td><td>api/v1/orders </td><td> Adds an order</td></tr>
-<tr><td>PUT</td><td>api/v1/orders/:orderId</td><td> Updates the status of an order</td></tr>
-</table> -->
-
+## Demo
+A fully functional demo of this project is available at [Limelight](https://limefastfood.herokuapp.com/)
 
 ### Testing the application
 List of steps to run the service
