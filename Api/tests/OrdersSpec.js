@@ -37,6 +37,17 @@ describe('/GET/orders/:id', () => {
         done();
       });
   });
+
+  it('it should return an error message when the given ID is not found', (done) => {
+    chai.request(server)
+      .get('/api/v1/orders/10')
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.message).to.equal('The order with the given ID was not found');
+        expect(response.body).to.be.an('object');
+        done();
+      });
+  });
 });
 
 describe('/POST orders', () => {
@@ -44,10 +55,8 @@ describe('/POST orders', () => {
     const order = {
     orderId: 1,
     userId: 1,
-    foodMenu: ['CheeseBurger', 'Pizza with Tomatoes'],
-    quantity: 1,
+    foodItems: [],
     totalPrice: 2000,
-    deliveryAddress: 'Awolowo Road Lagos',
     dateOrdered: new Date(),
     status: 'Completed'
     };
@@ -71,10 +80,8 @@ describe('/PUT orders/:id', () => {
     const order = {
       orderId: 4,
       userId: 3,
-      foodMenu: 'Fried Chicken',
-      quantity: 3,
+      foodItems: [],
       totalPrice: 4000,
-      deliveryAddress: 'Alfred Rewane Road Lagos',
       dateOrdered: '2018-09-12T22:51:15.609Z',
       status: 'Completed'
   };
@@ -91,7 +98,7 @@ describe('/PUT orders/:id', () => {
       });
   });
 
-  it('it should not UPDATE status of a specific order id', (done) => {
+  it('it should not UPDATE status of an order id that is not available', (done) => {
     chai.request(server)
       .put('/api/v1/orders/6')
       .set('Content-Type', 'application/json')
