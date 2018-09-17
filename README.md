@@ -75,7 +75,7 @@ List of endpoints exposed by the service
   * `status` The status of an order
 
 ## Demo
-A fully functional demo of this project is available at [Limelight](https://limefastfood.herokuapp.com/)
+A fully functional demo of this project hosted on Heroku is available at [Limelight](https://limefastfood.herokuapp.com/)
 
 ### Testing the application
 List of steps to run the service
