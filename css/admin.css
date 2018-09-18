@@ -130,6 +130,8 @@
   max-width: 100%;
   margin-bottom: 2rem;
   background-color: #fff;
+  table-layout: fixed;
+  border-collapse: collapse;
 
 }
 
@@ -161,11 +163,9 @@ th {
 td {
   font-size: 14px;
   color: #000;
-  /* table-layout: fixed; */
   /* width: 3px; */
-  white-space: wrap;
-  max-width: 1px;
-  word-wrap: break-word;
+  /* white-space: wrap; */
+  /* word-wrap: break-word; */
 }
 
 .table-border {
