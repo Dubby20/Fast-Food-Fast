@@ -38,6 +38,17 @@ describe('/GET/orders/:id', () => {
       });
   });
 
+  it('it should return an error message if the id is not a number', (done) => {
+    chai.request(server)
+      .get('/api/v1/orders/re')
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.message).to.equal('The given id is not a number');
+        expect(response.body).to.be.an('object');
+        done();
+      });
+  });
+
   it('it should return an error message when the given ID is not found', (done) => {
     chai.request(server)
       .get('/api/v1/orders/10')
@@ -72,6 +83,27 @@ describe('/POST orders', () => {
         done();
       });
   });
+
+  it('it should not add a new order if input is not valid', (done) => {
+    const order = {
+      orderId: 1,
+      userId: 1,
+      foodItems: [],
+      totalPrice: '',
+      dateOrdered: new Date(),
+      status: 'Completed'
+      };
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .send(order)
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body).to.be.an('object');
+        done();
+      });
+  });
 });
 
 
@@ -94,6 +126,20 @@ describe('/PUT orders/:id', () => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
         expect(response.body).to.have.property('message').eql('Status updated successfully');
+        done();
+      });
+  });
+
+  it('it should not UPDATE status of an order id if it is not a number', (done) => {
+    chai.request(server)
+      .put('/api/v1/orders/ab')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .send({ status: 'Completed' })
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('The status with the given id is not a number');
         done();
       });
   });

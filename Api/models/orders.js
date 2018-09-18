@@ -2,11 +2,11 @@ const orders = [{
   orderId: 1,
   userId: 1,
   foodItems: [{
-      id: 1,
+      foodId: 1,
       quantity: 2
     },
     {
-      id: 2,
+      foodId: 2,
       quantity: 4
     }
   ],
@@ -19,7 +19,7 @@ const orders = [{
   orderId: 2,
   userId: 2,
   foodItems: [{
-    id: 2,
+    foodId: 2,
     quantity: 1
   }],
   totalPrice: 4000,

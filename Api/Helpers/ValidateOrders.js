@@ -1,7 +1,7 @@
-// const quantityRegex = /^[0-9]+$/;
+const quantityRegex = /^[0-9]+$/;
 const totalPriceRegex = /^[0-9]+$/;
-
-// const quantityErrMessage = 'FoodItems must contain quantity and it must only contain numbers';
+const foodIdRegex = /^[0-9]+$/;
+const foodItemsErrMessage = 'Invalid values, FoodItems must contain foodId and quantity and both must be numbers';
 const totalPriceErrMessage = 'Price must only contain digits and must not be empty';
 
 export class OrderValidator {
@@ -21,6 +21,19 @@ export class OrderValidator {
     }
   }
 
+  testForFoodItems(foodItems) {
+    foodItems.forEach((item) => {
+      if (typeof item.foodId !== 'number' || typeof item.quantity !== 'number') {
+        this.passing = false;
+        this.errMessage = foodItemsErrMessage;
+      }
+      // if (OrderValidator.checkForNumber(item.foodId, foodIdRegex){
+      //   this.passing = false;
+      //   this.errMessage = foodItemsErrMessage;
+      // }
+    });
+  }
+
   resetValid() {
     this.passing = true;
     this.errMessage = '';
@@ -38,6 +51,7 @@ export class OrderValidator {
   testOrders(orders) {
     this.resetValid();
     this.testForEmptyStringInput(orders);
+    this.testForFoodItems(orders.foodItems);
     this.testTotalPrice(orders.totalPrice);
     const obj = {
       passing: this.passing,
