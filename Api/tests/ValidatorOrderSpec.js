@@ -54,6 +54,17 @@ describe('Validate  orders', () => {
     expect(ordersValidator.errMessage).to.equal('Price must only contain digits and must not be empty');
     done();
   });
+
+  it('should validate the this.testForStatus function', (done) => {
+    ordersValidator.testForStatus('Completed');
+    expect(ordersValidator.passing).to.equal(true);
+    expect(ordersValidator.errMessage).to.equal(undefined);
+    ordersValidator.testForStatus('Waiting');
+    expect(ordersValidator.passing).to.equal(false);
+    expect(ordersValidator.errMessage).to.equal('Invalid value, status must be a string containing Pending or Completed');
+    done();
+  });
+
   it('should validate the this.resetValid function', (done) => {
     ordersValidator.resetValid();
     expect(ordersValidator.passing).to.equal(true);

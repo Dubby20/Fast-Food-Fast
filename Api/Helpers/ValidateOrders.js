@@ -45,7 +45,7 @@ export class OrderValidator {
   }
 
   testForStatus(status) {
-    if (typeof status !== 'string' && (status !== 'Completed' || status !== 'Pending')) {
+    if (status !== 'Completed' && status !== 'Pending') {
       this.passing = false;
       this.errMessage = statusErrMessage;
     }
