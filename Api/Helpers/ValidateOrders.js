@@ -1,8 +1,11 @@
-const quantityRegex = /^[0-9]+$/;
+const userIdRegex = /^[0-9]+$/;
 const totalPriceRegex = /^[0-9]+$/;
-const foodIdRegex = /^[0-9]+$/;
+const completedRegex = /^Completed$/;
+const pendingRegex = /^Pending$/;
+const userIdErrMessage = 'userId must be a number';
 const foodItemsErrMessage = 'Invalid values, FoodItems must contain foodId and quantity and both must be numbers';
 const totalPriceErrMessage = 'Price must only contain digits and must not be empty';
+const statusErrMessage = 'Invalid value, status must be a string containing Pending or Completed';
 
 export class OrderValidator {
   constructor() {
@@ -12,6 +15,13 @@ export class OrderValidator {
 
   static checkForNumber(data, regex) {
     return !regex.test(data) || typeof data !== 'number';
+  }
+
+  testUserId(userId) {
+    if (OrderValidator.checkForNumber(userId, userIdRegex)) {
+      this.passing = false;
+      this.errMessage = userIdErrMessage;
+    }
   }
 
   testTotalPrice(totalPrice) {
@@ -34,6 +44,13 @@ export class OrderValidator {
     });
   }
 
+  testForStatus(status) {
+    if (typeof status !== 'string' && (status !== 'Completed' || status !== 'Pending')) {
+      this.passing = false;
+      this.errMessage = statusErrMessage;
+    }
+  }
+
   resetValid() {
     this.passing = true;
     this.errMessage = '';
@@ -51,8 +68,10 @@ export class OrderValidator {
   testOrders(orders) {
     this.resetValid();
     this.testForEmptyStringInput(orders);
+    this.testUserId(orders.userId);
     this.testForFoodItems(orders.foodItems);
     this.testTotalPrice(orders.totalPrice);
+    this.testForStatus(orders.status);
     const obj = {
       passing: this.passing,
       err: this.errMessage

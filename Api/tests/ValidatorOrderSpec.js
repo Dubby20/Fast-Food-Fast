@@ -17,6 +17,16 @@ describe('Validate  orders', () => {
     ordersValidator = new OrderValidator();
     done();
   });
+  it('should validate the this.testUserId function', (done) => {
+    ordersValidator.testUserId(1);
+    expect(ordersValidator.passing).to.equal(true);
+    expect(ordersValidator.errMessage).to.equal(undefined);
+    ordersValidator.testUserId('4');
+    expect(ordersValidator.passing).to.equal(false);
+    expect(ordersValidator.errMessage).to.equal('userId must be a number');
+    done();
+  });
+
   it('should validate the this.testForFoodItems function', (done) => {
     ordersValidator.testForFoodItems([{
       foodId: 1,
