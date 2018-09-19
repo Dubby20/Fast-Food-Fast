@@ -39,14 +39,20 @@ class OrderControllers {
 
   static getOrderId(request, response) {
     const getId = orders.find(item => item.orderId === parseInt(request.params.id, 10));
+    if (!Number(request.params.id)) {
+      return response.status(400).json({
+        message: 'The given id is not a number'
+      });
+    }
     if (!getId) {
       return response.status(404).json({
         message: 'The order with the given ID was not found'
       });
     }
-    const foodItemsID = getId.foodItems.map(item => item.id);
-    const foodItems = foodItemsID.map(id => food.find(item => item.foodId === id));
-    getId.foodItems = foodItems;
+    // const foodItemsID = getId.foodItems.map(item => item.foodId);
+    // const foodItemsQuantity = getId.foodItems.map(item => item.quantity);
+    // const foodItems = foodItemsID.map(id => food.find(item => item.foodId === id));
+    // getId.foodItems = foodItems;
     return response.status(200).json({
       getId,
       message: 'Get a specific order is successful'
@@ -93,6 +99,11 @@ class OrderControllers {
 
   static updateStatus(request, response) {
     const orderStatus = orders.find(item => item.orderId === parseInt(request.params.id, 10));
+    if (!Number(request.params.id)) {
+      return response.status(400).json({
+        message: 'The status with the given id is not a number'
+      });
+    }
     if (!orderStatus) {
       return response.status(404).json({
         message: 'The status with the given order ID is not found'

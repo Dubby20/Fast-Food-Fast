@@ -17,16 +17,33 @@ describe('Validate  orders', () => {
     ordersValidator = new OrderValidator();
     done();
   });
-  // it('should validate the this.testQuantity function', (done) => {
-  //   ordersValidator.testQuantity(10);
-  //   expect(ordersValidator.passing).to.equal(true);
-  //   expect(ordersValidator.errMessage).to.equal(undefined);
-  //   ordersValidator.testQuantity('4000');
-  //   expect(ordersValidator.passing).to.equal(false);
-  //   expect(ordersValidator.errMessage).to.equal(
-    // 'Quantity must only contain numbers and must not be empty');
-  //   done();
-  // });
+  it('should validate the this.testUserId function', (done) => {
+    ordersValidator.testUserId(1);
+    expect(ordersValidator.passing).to.equal(true);
+    expect(ordersValidator.errMessage).to.equal(undefined);
+    ordersValidator.testUserId('4');
+    expect(ordersValidator.passing).to.equal(false);
+    expect(ordersValidator.errMessage).to.equal('userId must be a number');
+    done();
+  });
+
+  it('should validate the this.testForFoodItems function', (done) => {
+    ordersValidator.testForFoodItems([{
+      foodId: 1,
+      quantity: 4
+    }]);
+    expect(ordersValidator.passing).to.equal(true);
+    expect(ordersValidator.errMessage).to.equal(undefined);
+    ordersValidator.testForFoodItems([{
+      fodId: '1',
+      quantity: '3'
+    }]);
+    expect(ordersValidator.passing).to.equal(false);
+    expect(ordersValidator.errMessage).to.equal(
+      'Invalid values, FoodItems must contain foodId and quantity and both must be numbers'
+    );
+    done();
+  });
 
   it('should validate the this.testTotalPrice function', (done) => {
     ordersValidator.testTotalPrice(4000);
@@ -53,7 +70,7 @@ describe('Validate  orders', () => {
     expect(ordersValidator.errMessage).to.equal(undefined);
     expect(ordersValidator.passing).to.equal(true);
     ordersValidator.testForEmptyStringInput({
-      quantity: ''
+      status: ''
     });
     expect(ordersValidator.passing).to.equal(false);
     expect(ordersValidator.errMessage).to.equal('Input fields must not be empty');
