@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../server';
+import server from '../app';
 
 import orders from '../models/orders';
 
