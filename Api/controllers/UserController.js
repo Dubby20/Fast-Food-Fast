@@ -35,9 +35,7 @@ class UserController {
       firstname,
       lastname,
       email,
-      password,
-      phoneNumber,
-      address
+      password
     } = request.body;
 
     pool.query('SELECT * FROM users WHERE email = $1', [request.body.email])
@@ -83,17 +81,94 @@ class UserController {
                   email: user.email
                 }
               });
-            }).catch((err) => {
-              response.status(501).json({
+            }).catch(err => response.status(501).json({
                 message: err.message
-              });
-            });
+              }));
         });
-      }).catch((err) => {
-        response.status(502).json({
+      }).catch(err => response.status(502).json({
           message: err.message
-        });
+        }));
+      }
+
+  /**
+     * @description login a  user
+
+     * @memberof UserController
+      * @static login a user
+     * @param {object} request object
+     * @param {object} response  object
+     *
+     * @returns {object} object
+
+     */
+
+  static login(request, response) {
+    const {
+      email,
+      password
+    } = request.body;
+    
+    if (!email) {
+      return response.status(400).json({
+        status: 'Error',
+        message: 'Email is required'
       });
+    }
+    if (!password) {
+      return response.status(400).json({
+        status: 'Error',
+        message: 'Password is required'
+      });
+    }
+    pool.query('SELECT * FROM users WHERE email = $1', [request.body.email])
+      .then((data) => {
+        const user = data.rows[0];
+        if (!user) {
+          return response.status(400).json({
+            status: 'Error',
+            message: 'Invalid login details. Email or password is wrong'
+          });
+        }
+        /**
+     * comparePassword
+     * @param {string} hashPassword
+     * @param {string} password
+
+     * @returns {Boolean} return True or False
+     */
+        if (!bcrypt.compareSync(password, user.password)) {
+          return response.status(400).json({
+            status: 'Error',
+            message: 'Invalid login details. Email or password is wrong'
+          });
+        }
+        /**
+         * Gnerate Token
+         * @param {string} id
+         * @param {string} email
+         * @returns {string} token
+         */
+
+        const token = jwt.sign({
+          id: user.id,
+          email: user.email
+          },
+          process.env.SECRET, {
+            expiresIn: '24h'
+          });
+        return response.status(200).json({
+          token,
+          status: 'Success',
+          message: 'Successfully signed in',
+          user: {
+            id: user.id,
+            email: user.email
+          }
+        });
+      }).catch(error => response.status(501).json({
+        status: 'Fail',
+        message: error.message
+      }));
   }
 }
 

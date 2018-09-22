@@ -68,18 +68,97 @@ describe('api/v1/auth/signup', () => {
         });
     });
 
-    // it('It Should not create user with an existing email', (done) => {
+  //   it('It Should not create user with an existing email', (done) => {
+  //     chai.request(server)
+  //       .post('/api/v1/auth/signup')
+  //       .set('Content-Type', 'application/json')
+  //       .set('Accept', 'application/json')
+  //       .send(user)
+  //       .end((error, response) => {
+  //         expect(response).to.status(409);
+  //         expect(response.body).to.be.an('object');
+  //         expect(response.body.message).to.equal('Email already exists');
+  //         done();
+  //       });
+  //   });
+});
+});
+
+
+  describe('User login', () => {
+    // it('It should login a user with a valid input details', (done) => {
+    //   const userLogin = {
+    //     email: 'jacy@gmail.com',
+    //     password: 'dubby654'
+    //   };
     //   chai.request(server)
-    //     .post('/api/v1/auth/signup')
+    //     .post('/api/v1/auth/login')
     //     .set('Content-Type', 'application/json')
     //     .set('Accept', 'application/json')
-    //     .send(user)
+    //     .send(userLogin)
     //     .end((error, response) => {
-    //       expect(response).to.status(409);
+    //       console.log(response);
+    //       expect(response).to.status(200);
     //       expect(response.body).to.be.an('object');
-    //       expect(response.body.message).to.equal('Email already exists');
+    //       expect(response.body.message).to.equal('Successfully signed in');
+    //       expect(response.body.user.email).to.equal(userLogin.email);
+    //       expect(response.body).to.have.property('token');
+    //       expect(response.body.token).to.be.a('string');
     //       done();
     //     });
     // });
+
+    it('It should not login a user with Invalid email details', (done) => {
+      const userLogin = {
+        email: 'jay7@gmail.com',
+        password: 'dubby'
+      };
+      chai.request(server)
+        .post('/api/v1/auth/login')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(userLogin)
+        .end((error, response) => {
+          expect(response).to.status(400);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('Invalid login details. Email or password is wrong');
+          done();
+        });
+    });
+
+    it('It should not login a user when the email is not given or invalid', (done) => {
+      const userLogin = {
+        email: '',
+        password: 'dubby654'
+      };
+      chai.request(server)
+        .post('/api/v1/auth/login')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(userLogin)
+        .end((error, response) => {
+          expect(response).to.status(400);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('Email is required');
+          done();
+        });
+    });
+
+    it('It should not login a user when the password is not given or invalid', (done) => {
+      const userLogin = {
+        email: 'jay7@gmail.com',
+        password: ''
+      };
+      chai.request(server)
+        .post('/api/v1/auth/login')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(userLogin)
+        .end((error, response) => {
+          expect(response).to.status(400);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('Password is required');
+          done();
+        });
+    });
   });
-});
