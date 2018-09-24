@@ -12,5 +12,6 @@ router.post('/auth/signup', UserController.signup);
 router.post('/auth/login', UserController.login);
 // router.post('/orders', verifyToken, OrderController.placeOrder);
 router.post('/menu', verifyToken, MenuController.addMenu);
+router.get('/menu', MenuController.getMenu);
 
 export default router;
