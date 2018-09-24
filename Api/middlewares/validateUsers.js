@@ -20,6 +20,12 @@ export class ValidateUserSignup {
     this.errMessage;
   }
 
+  /** @function testForEmptyStringInput
+   *  @param {Object}
+
+   * @returns {boolean}
+   */
+
   testForEmptyStringInput(users) {
     let check = Object.values(users);
     check = check.every(data => data !== '');
@@ -29,12 +35,24 @@ export class ValidateUserSignup {
     }
   }
 
+/** @function testFirstName
+   *  @param {string}
+
+   * @returns {boolean}
+   */
+
   testFirstName(firstname) {
     if (!firstnameRegex.test(firstname)) {
       this.passing = false;
       this.errMessage = 'Firstname must contain between 3 and 20 characters only';
     }
   }
+
+  /** @function testLastName
+   *  @param {string}
+
+   * @returns {boolean}
+   */
 
   testLastName(lastname) {
     if (!lastnameRegex.test(lastname)) {
@@ -43,12 +61,24 @@ export class ValidateUserSignup {
     }
   }
 
+  /** @function testEmail
+   *  @param {string}
+
+   * @returns {boolean}
+   */
+
   testEmail(email) {
     if (!emailRegex.test(email)) {
       this.passing = false;
       this.errMessage = 'Please enter a valid email';
     }
   }
+
+  /** @function testPassword
+   *  @param {string}
+
+   * @returns {boolean}
+   */
 
   testPassword(password) {
     if (!passwordRegex.test(password)) {
@@ -57,10 +87,21 @@ export class ValidateUserSignup {
     }
   }
 
+  /** @function resetValid
+
+   *  @returns {boolean}
+   */
+
   resetValid() {
     this.passing = true;
     this.errMessage = '';
   }
+
+  /** @function testUsers
+   *  @param {Object}
+
+   * @returns {Object}
+   */
 
   testUsers(users) {
     this.resetValid();
