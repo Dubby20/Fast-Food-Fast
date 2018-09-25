@@ -27,7 +27,7 @@ class UserController {
   static signup(request, response) {
     const results = validateSignup.testUsers(request.body);
     if (!results.passing) {
-      return response.status(400).json({
+      response.status(400).json({
         message: results.err
       });
     }
@@ -54,8 +54,8 @@ class UserController {
          */
         bcrypt.hash(request.body.password, 10, (error, hash) => {
           pool.query(
-              'INSERT INTO users (firstname, lastname, email, password, phone_number, address) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-              [request.body.firstname, request.body.lastname, request.body.email, hash, request.body.phone_number, request.body.address]
+              'INSERT INTO users (firstname, lastname, email, password, phone_number, address) \n'
+              + 'VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [request.body.firstname, request.body.lastname, request.body.email, hash, request.body.phone_number, request.body.address]
             )
             .then((data) => {
               const user = data.rows[0];
@@ -107,15 +107,15 @@ class UserController {
       email,
       password
     } = request.body;
-    
+
     if (!email) {
-      return response.status(400).json({
+      response.status(400).json({
         status: 'Error',
         message: 'Email is required'
       });
     }
     if (!password) {
-      return response.status(400).json({
+      response.status(400).json({
         status: 'Error',
         message: 'Password is required'
       });
