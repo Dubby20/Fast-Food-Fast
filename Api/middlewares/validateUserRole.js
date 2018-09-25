@@ -4,7 +4,6 @@ const userRole = (request, response, next) => {
   pool.query('SELECT id FROM users WHERE is_admin= true')
 .then((data) => {
 const user = data.rows[0];
-console.log(user);
 if (!user) {
   return response.status(400).json({
     status: 'Error',
@@ -16,7 +15,7 @@ if (user.isAdmin !== true) {
     message: user.isAdmin
   });
 }
-// next();
+next();
 });
 };
 
