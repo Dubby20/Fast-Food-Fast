@@ -1,9 +1,12 @@
 import pg from 'pg';
-import config from '../config/config';
+import dotenv from 'dotenv';
 
-const client = new pg.Client({
+dotenv.config();
+
+const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
 
-client.connect();
+
+export default pool;
