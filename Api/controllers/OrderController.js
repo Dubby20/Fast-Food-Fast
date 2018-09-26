@@ -164,6 +164,11 @@ class OrderController {
         message: 'Status is required'
       });
     }
+    if (status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
+      return response.json({
+        message: 'Invalid status, status must be a string containing Processing, Cancelled or Complete'
+      });
+    }
     if (!Number(request.params.id)) {
       return response.status(400).json({
         message: 'The status with the given id is not a number'

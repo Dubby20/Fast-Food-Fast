@@ -59,7 +59,7 @@ export class OrderValidator {
    */
 
   testForStatus(status) {
-    if (status !== 'New' && status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
+    if (status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
       this.passing = false;
       this.errMessage = 'Invalid status, status must be a string containing New, Processing, Cancelled or Complete';
     }
