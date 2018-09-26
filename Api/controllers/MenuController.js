@@ -20,7 +20,7 @@ export default class MenuController {
   static addMenu(request, response) {
     const results = validateMenu.testFoodMenu(request.body);
     if (!results.passing) {
-      return response.status(400).json({
+      response.status(400).json({
         message: results.err
       });
     }
@@ -40,13 +40,13 @@ export default class MenuController {
       price
     } = request.body;
     if (!foodName) {
-      return response.status(400).json({
+       response.status(400).json({
         status: 'Error',
         message: 'Food Name is required'
       });
     }
     if (!price) {
-      return response.status(400).json({
+      response.status(400).json({
         status: 'Error',
         message: 'Price is required'
       });

@@ -17,6 +17,13 @@ const user = {
   password: 'dubby654'
 };
 
+const user2 = {
+  firstname: 'Dubby',
+  lastname: 'Alex',
+  email: 'duby@yhaoo.com',
+  password: 'password'
+};
+
 const inValidUser = {
   firstname: '',
   lastname: 'Nnadi',
@@ -39,24 +46,24 @@ describe('', () => {
 
 
   describe('User signup', () => {
-    // it('It Should create user with valid input details', (done) => {
-    //   chai.request(server)
-    //     .post('/api/v1/auth/signup')
-    //     .set('Content-Type', 'application/json')
-    //     .set('Accept', 'application/json')
-    //     .send(user)
-    //     .end((error, response) => {
-    //       expect(response).to.status(201);
-    //       expect(response.body).to.be.an('object');
-    //       expect(response.body.message).to.equal('User created successfully');
-    //       expect(response.body.user.firstname).to.equal(user.firstname);
-    //       expect(response.body.user.lastname).to.equal(user.lastname);
-    //       expect(response.body.user.email).to.equal(user.email);
-    //       expect(response.body).to.have.property('token');
-    //       expect(response.body.token).to.be.a('string');
-    //       done();
-    //     });
-    // });
+    it('It Should create user with valid input details', (done) => {
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(user2)
+        .end((error, response) => {
+          expect(response).to.status(201);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('User created successfully');
+          expect(response.body.user.firstname).to.equal(user2.firstname);
+          expect(response.body.user.lastname).to.equal(user2.lastname);
+          expect(response.body.user.email).to.equal(user2.email);
+          expect(response.body).to.have.property('token');
+          expect(response.body.token).to.be.a('string');
+          done();
+        });
+    });
 
     it('It Should not create a user with Invalid input details', (done) => {
       chai.request(server)

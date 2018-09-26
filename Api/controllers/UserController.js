@@ -27,7 +27,7 @@ class UserController {
   static signup(request, response) {
     const results = validateSignup.testUsers(request.body);
     if (!results.passing) {
-      return response.status(400).json({
+      response.status(400).json({
         message: results.err
       });
     }
@@ -46,7 +46,7 @@ class UserController {
       lastname,
       email,
       password,
-      role
+      isAdmin
     } = request.body;
 
     pool.query('SELECT * FROM users WHERE email = $1', [email])
@@ -67,8 +67,8 @@ class UserController {
 
         bcrypt.hash(password, 10, (error, hash) => {
           pool.query(
-              'INSERT INTO users (firstname, lastname, email, password, role) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-              [firstname, lastname, email, hash, role]
+              'INSERT INTO users (firstname, lastname, email, password, is_admin) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+              [firstname, lastname, email, hash, isAdmin]
             )
             .then((data) => {
               const user = data.rows[0];
@@ -94,7 +94,7 @@ class UserController {
                   firstname: user.firstname,
                   lastname: user.lastname,
                   email: user.email,
-                  role: user.role
+                  isAdmin: user.is_admin
                 }
               });
             }).catch(err => response.status(500).json({
@@ -132,13 +132,13 @@ class UserController {
     } = request.body;
 
     if (!email) {
-      return response.status(400).json({
+      response.status(400).json({
         status: 'Error',
         message: 'Email is required'
       });
     }
     if (!password) {
-      return response.status(400).json({
+      response.status(400).json({
         status: 'Error',
         message: 'Password is required'
       });
