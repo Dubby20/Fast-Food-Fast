@@ -36,7 +36,7 @@ class OrderController {
         [request.decoded.id, phoneNumber, address, JSON.stringify(foodItems)])
       .then((data) => {
         const order = data.rows[0];
-        return response.status(201).json({
+        response.status(201).json({
           order,
           status: 'Success',
           message: 'Order placed successfully'
@@ -67,7 +67,7 @@ class OrderController {
       .then((data) => {
         const orders = data.rows;
         if (orders.length === 0) {
-          return response.status(404).json({
+          response.status(404).json({
             status: 'Error',
             message: 'User has no order history'
           });
@@ -96,7 +96,7 @@ class OrderController {
       .then((data) => {
         const orders = data.rows;
         if (orders.length === 0) {
-          return response.status(404).json({
+          response.status(404).json({
             status: 'Error',
             message: 'No order yet'
           });
@@ -130,7 +130,7 @@ class OrderController {
       .then((data) => {
         const order = data.rows[0];
         if (!order) {
-          return response.status(404).json({
+          response.status(404).json({
             status: 'Error',
             message: 'The id of the given order was not found'
           });
@@ -178,9 +178,9 @@ class OrderController {
       .then((data) => {
         const orderStatus = data.rows;
         if (orderStatus.length < 1) {
-          return response.status(404).json({
+          response.status(404).json({
             status: 'Error',
-            message: 'The status with the given order ID was not found'
+            message: 'The status with the given order id was not found'
           });
         }
         return response.status(200).json({

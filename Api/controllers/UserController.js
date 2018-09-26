@@ -148,7 +148,7 @@ export default class UserController {
       .then((data) => {
         const user = data.rows[0];
         if (!user) {
-          return response.status(400).json({
+          response.status(400).json({
             status: 'Error',
             message: 'Invalid login details. Email or password is wrong'
           });
