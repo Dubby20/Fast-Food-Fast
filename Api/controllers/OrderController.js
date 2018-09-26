@@ -94,6 +94,30 @@ class OrderController {
       message: err.message
     }));
   }
+
+  static orderId(request, response) {
+    pool.query('SELECT * FROM orders where id = $1', [request.params.id])
+    .then((data) => {
+      const order = data.rows[0];
+      if (!Number(request.params.id)) {
+        return response.status(400).json({
+          message: 'The given id is not a number'
+        });
+      }
+      if (!order) {
+        return response.status(404).json({
+          status: 'Error',
+          message: 'The id of the given order was not found'
+        });
+      }
+      return response.status(200).json({
+        order,
+        message: 'Get a specific order was successful'
+      });
+    }).catch(err => response.status(500).json({
+      message: err.message
+    }));
+  }
 }
 
 
