@@ -53,7 +53,7 @@ export default class UserController {
       .then((result) => {
         const emailExists = result.rows[0];
         if (emailExists) {
-          return response.status(409).json({
+          response.status(409).json({
             status: 'Error',
             message: 'Email already exists'
           });
@@ -82,7 +82,8 @@ export default class UserController {
 
               const token = jwt.sign({
                 id: user.id,
-                email: user.email
+                email: user.email,
+                isAdmin: user.isAdmin
               }, process.env.SECRET, {
                 expiresIn: '24h'
               });
@@ -176,7 +177,8 @@ export default class UserController {
 
         const token = jwt.sign({
             id: user.id,
-            email: user.email
+            email: user.email,
+            isAdmin: user.is_admin
           },
           process.env.SECRET, {
             expiresIn: '24h'
