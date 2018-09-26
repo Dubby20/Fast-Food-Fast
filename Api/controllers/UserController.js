@@ -11,7 +11,7 @@ import {
  * @class ValidateUserSignup
  */
 const validateSignup = new ValidateUserSignup();
-class UserController {
+export default class UserController {
   /**
    * @description creates new user
 
@@ -67,7 +67,7 @@ class UserController {
 
         bcrypt.hash(password, 10, (error, hash) => {
           pool.query(
-              'INSERT INTO users (firstname, lastname, email, password, is_admin) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            'INSERT INTO users (firstname, lastname, email, password, is_admin) VALUES ($1, $2, $3, $4, $5) RETURNING *',
               [firstname, lastname, email, hash, isAdmin]
             )
             .then((data) => {
@@ -196,5 +196,3 @@ class UserController {
       }));
   }
 }
-
-export default UserController;

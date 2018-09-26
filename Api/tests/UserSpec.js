@@ -23,7 +23,6 @@ const user2 = {
   email: 'duby@yhaoo.com',
   password: 'password'
 };
-
 const inValidUser = {
   firstname: '',
   lastname: 'Nnadi',
@@ -33,7 +32,7 @@ const inValidUser = {
 
 describe('', () => {
   beforeEach((done) => {
-    pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *', () => {
+pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *', () => {
       done();
     });
   });
@@ -53,6 +52,7 @@ describe('', () => {
         .set('Accept', 'application/json')
         .send(user2)
         .end((error, response) => {
+          console.log(response);
           expect(response).to.status(201);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('User created successfully');
@@ -83,7 +83,7 @@ describe('', () => {
         .post('/api/v1/auth/signup')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(user)
+        .send(user2)
         .end((error, response) => {
           expect(response).to.status(409);
           expect(response.body).to.be.an('object');
