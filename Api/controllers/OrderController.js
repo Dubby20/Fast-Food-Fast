@@ -75,6 +75,25 @@ class OrderController {
       message: err.message
     }));
   }
+
+  static allOrders(request, response) {
+    pool.query('SELECT * FROM orders')
+    .then((data) => {
+      const orders = data.rows;
+      if (orders.length === 0) {
+        return response.status(404).json({
+          status: 'Error',
+          message: 'No order yet'
+        });
+      }
+      return response.status(200).json({
+        orders,
+        message: 'All orders was Successful'
+      });
+    }).catch(err => response.status(500).json({
+      message: err.message
+    }));
+  }
 }
 
 

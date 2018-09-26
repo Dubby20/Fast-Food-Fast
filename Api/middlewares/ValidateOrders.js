@@ -46,7 +46,7 @@ export class OrderValidator {
 
   testForFoodItems(foodItems) {
     foodItems.forEach((item) => {
-      if (typeof item.foodId !== 'number' || typeof item.quantity !== 'number') {
+      if (typeof item.foodId !== 'number' || typeof item.quantity !== 'number' || item.quantity < 1) {
         this.passing = false;
         this.errMessage = 'Invalid values, FoodItems must contain foodId and quantity and both must be numbers';
       }
