@@ -58,65 +58,138 @@ class OrderController {
 
   * @returns {object} object
   */
-    pool.query('SELECT  * FROM orders WHERE user_id = $1', [request.params.id])
-    .then((data) => {
-      const orders = data.rows;
-      if (orders.length === 0) {
-        return response.status(404).json({
-          status: 'Error',
-          message: 'User has no order history'
-        });
-      }
-      return response.status(200).json({
-        orders,
-        message: 'Successful'
+    if (!Number(request.params.id)) {
+      return response.status(400).json({
+        message: 'The given user id is not a number'
       });
-    }).catch(err => response.status(500).json({
-      message: err.message
-    }));
+    }
+    pool.query('SELECT  * FROM orders WHERE user_id = $1', [request.params.id])
+      .then((data) => {
+        const orders = data.rows;
+        if (orders.length === 0) {
+          return response.status(404).json({
+            status: 'Error',
+            message: 'User has no order history'
+          });
+        }
+        return response.status(200).json({
+          orders,
+          message: 'Successful'
+        });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
+  /**
+     * @description Gets all the orders
+     *
+    * @static allOrders
+     * @param {object} request Request object
+     * @param {object} response Response object
+     * @memberof OrderController
+
+     * @returns {object} List of all orders array
+     */
 
   static allOrders(request, response) {
     pool.query('SELECT * FROM orders')
-    .then((data) => {
-      const orders = data.rows;
-      if (orders.length === 0) {
-        return response.status(404).json({
-          status: 'Error',
-          message: 'No order yet'
+      .then((data) => {
+        const orders = data.rows;
+        if (orders.length === 0) {
+          return response.status(404).json({
+            status: 'Error',
+            message: 'No order yet'
+          });
+        }
+        return response.status(200).json({
+          orders,
+          message: 'All orders was Successful'
         });
-      }
-      return response.status(200).json({
-        orders,
-        message: 'All orders was Successful'
-      });
-    }).catch(err => response.status(500).json({
-      message: err.message
-    }));
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
 
+  /**
+   * @description Gets a specific order by id
+   *
+   * @static orderId
+   * @param {object} request Request Object with the given order id
+   * @param {object} response Response object
+   * @memberof OrderController
+   *
+   * @returns {object} orders object or error message if order is not found
+   */
   static orderId(request, response) {
-    pool.query('SELECT * FROM orders where id = $1', [request.params.id])
-    .then((data) => {
-      const order = data.rows[0];
-      if (!Number(request.params.id)) {
-        return response.status(400).json({
-          message: 'The given id is not a number'
-        });
-      }
-      if (!order) {
-        return response.status(404).json({
-          status: 'Error',
-          message: 'The id of the given order was not found'
-        });
-      }
-      return response.status(200).json({
-        order,
-        message: 'Get a specific order was successful'
+    if (!Number(request.params.id)) {
+      return response.status(400).json({
+        message: 'The given order id is not a number'
       });
-    }).catch(err => response.status(500).json({
-      message: err.message
-    }));
+    }
+    pool.query('SELECT * FROM orders where id = $1', [request.params.id])
+      .then((data) => {
+        const order = data.rows[0];
+        if (!order) {
+          return response.status(404).json({
+            status: 'Error',
+            message: 'The id of the given order was not found'
+          });
+        }
+        return response.status(200).json({
+          order,
+          message: 'Get a specific order was successful'
+        });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
+  }
+  /**
+   * @description Updates's the status of an order with the given id
+   *
+   * @static updateStatus
+   * @param {object} request Request Object
+   * @param {object} response Response Object
+   * @memberof OrderController
+   *
+   * @returns {object} Updated status or error message if order id is not found
+   */
+
+  static updateStatus(request, response) {
+    const {
+      status
+    } = request.body;
+    if (!status) {
+      response.status(400).json({
+        status: 'Error',
+        message: 'Status is required'
+      });
+    }
+    if (status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
+      return response.json({
+        message: 'Invalid status, status must be a string containing Processing, Cancelled or Complete'
+      });
+    }
+    if (!Number(request.params.id)) {
+      return response.status(400).json({
+        message: 'The status with the given id is not a number'
+      });
+    }
+    pool.query(`UPDATE orders SET status = '${status}' WHERE id = $1 RETURNING *`, [request.params.id])
+      .then((data) => {
+        const orderStatus = data.rows;
+        if (orderStatus.length < 1) {
+          return response.status(404).json({
+            status: 'Error',
+            message: 'The status with the given order ID was not found'
+          });
+        }
+        return response.status(200).json({
+          orderStatus,
+          message: 'Status updated successfully'
+        });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
 }
 

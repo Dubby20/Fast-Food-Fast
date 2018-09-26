@@ -23,6 +23,7 @@ const user2 = {
   email: 'duby@yhaoo.com',
   password: 'password'
 };
+
 const inValidUser = {
   firstname: '',
   lastname: 'Nnadi',
@@ -52,7 +53,6 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
         .set('Accept', 'application/json')
         .send(user2)
         .end((error, response) => {
-          console.log(response);
           expect(response).to.status(201);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('User created successfully');

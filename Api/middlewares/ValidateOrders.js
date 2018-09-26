@@ -1,5 +1,5 @@
 const phoneNumberRegex = /^([0-9{11, 15}]*)$/;
-const addressRegex = /^[A-Za-z0-9]{5,100}$/;
+const addressRegex = /^[A-Za-z0-9\s\,\''\-]{5,100}$/;
 
 export class OrderValidator {
    /**
@@ -35,7 +35,7 @@ export class OrderValidator {
   testForAddress(address) {
     if (!addressRegex.test(address)) {
       this.passing = false;
-      this.errMessage = 'Invalid, ';
+      this.errMessage = 'Invalid address';
     }
   }
 /** @function testForFoodItems
@@ -59,7 +59,7 @@ export class OrderValidator {
    */
 
   testForStatus(status) {
-    if (status !== 'New' && status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
+    if (status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
       this.passing = false;
       this.errMessage = 'Invalid status, status must be a string containing New, Processing, Cancelled or Complete';
     }
