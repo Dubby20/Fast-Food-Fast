@@ -1,5 +1,3 @@
-import pool from '../database/db';
-
 const phoneNumberRegex = /^([0-9{11, 15}]*)$/;
 const addressRegex = /^[A-Za-z0-9]{5,100}$/;
 

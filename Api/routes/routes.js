@@ -13,5 +13,6 @@ router.post('/auth/login', UserController.login);
 router.post('/orders', verifyToken, OrderController.placeOrder);
 router.post('/menu', verifyToken, userRole, MenuController.addMenu);
 router.get('/menu', MenuController.getMenu);
+router.get('/users/:id/orders', verifyToken, OrderController.userOrderHistory);
 
 export default router;

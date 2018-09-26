@@ -1,7 +1,7 @@
 import pool from '../database/db';
 
 const userRole = (request, response, next) => {
-  pool.query('SELECT id FROM users WHERE is_admin= true')
+  pool.query('SELECT * FROM users WHERE is_admin= true')
 .then((data) => {
 const user = data.rows[0];
 if (!user) {
