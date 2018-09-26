@@ -64,4 +64,33 @@ export default class MenuController {
         message: err.message
       }));
   }
+/**
+   * @description get all available menu
+   *
+   * @static get a menu
+   * @memberof MenuController
+   * @param {object} request The request.
+   * @param {object} response The response.
+   *@function getMenu
+
+   * @returns {object} response.
+   */
+
+  static getMenu(request, response) {
+    pool.query('SELECT * FROM food_menu')
+      .then((data) => {
+        const menu = data.rows;
+        if (menu.length === 0) {
+          return response.status(400).json({
+            message: 'No available menu yet'
+          });
+        }
+        return response.status(200).json({
+          menu,
+          message: 'Successful'
+        });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
+  }
 }

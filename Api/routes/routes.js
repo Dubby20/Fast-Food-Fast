@@ -10,5 +10,6 @@ const router = express.Router();
 router.post('/auth/signup', UserController.signup);
 router.post('/auth/login', UserController.login);
 router.post('/menu', verifyToken, userRole, MenuController.addMenu);
+router.get('/menu', MenuController.getMenu);
 
 export default router;
