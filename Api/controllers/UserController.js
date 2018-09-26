@@ -11,7 +11,7 @@ import {
  * @class ValidateUserSignup
  */
 const validateSignup = new ValidateUserSignup();
-class UserController {
+export default class UserController {
   /**
    * @description creates new user
 
@@ -31,14 +31,25 @@ class UserController {
         message: results.err
       });
     }
+
+    /**
+ * Create new user
+ * @property {string} request.body.firstname - The firstname of user.
+ * @property {string} request.body.lastname - The lastname of user.
+ * @property {string} request.body.email - The email of user.
+ * @property {string} request.body.password - The password of user.
+
+ * @returns {User}
+ */
     const {
       firstname,
       lastname,
       email,
-      password
+      password,
+      isAdmin
     } = request.body;
 
-    pool.query('SELECT * FROM users WHERE email = $1', [request.body.email])
+    pool.query('SELECT * FROM users WHERE email = $1', [email])
       .then((result) => {
         const emailExists = result.rows[0];
         if (emailExists) {
@@ -47,24 +58,28 @@ class UserController {
             message: 'Email already exists'
           });
         }
+
         /**
          * Hash Password Method
          * @param {string} password
          * @returns {string} returns hashed password
          */
-        bcrypt.hash(request.body.password, 10, (error, hash) => {
+
+        bcrypt.hash(password, 10, (error, hash) => {
           pool.query(
-              'INSERT INTO users (firstname, lastname, email, password, phone_number, address) \n'
-              + 'VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [request.body.firstname, request.body.lastname, request.body.email, hash, request.body.phone_number, request.body.address]
+            'INSERT INTO users (firstname, lastname, email, password, is_admin) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+              [firstname, lastname, email, hash, isAdmin]
             )
             .then((data) => {
               const user = data.rows[0];
+
               /**
                * Gnerate Token
                * @param {string} id
                * @param {string} email
                * @returns {string} token
                */
+
               const token = jwt.sign({
                 id: user.id,
                 email: user.email
@@ -78,23 +93,24 @@ class UserController {
                 user: {
                   firstname: user.firstname,
                   lastname: user.lastname,
-                  email: user.email
+                  email: user.email,
+                  isAdmin: user.is_admin
                 }
               });
-            }).catch(err => response.status(501).json({
-                message: err.message
-              }));
+            }).catch(err => response.status(500).json({
+              message: err.message
+            }));
         });
-      }).catch(err => response.status(502).json({
-          message: err.message
-        }));
-      }
+      }).catch(err => response.status(501).json({
+        message: err.message
+      }));
+  }
 
   /**
      * @description login a  user
 
      * @memberof UserController
-      * @static login a user
+    * @static login a user
      * @param {object} request object
      * @param {object} response  object
      *
@@ -103,6 +119,13 @@ class UserController {
      */
 
   static login(request, response) {
+    /**
+        * @property {string} request.body.email - The email of user.
+        * @property {string} request.body.password - The password of user.
+
+        * @returns {User}
+        */
+
     const {
       email,
       password
@@ -120,7 +143,7 @@ class UserController {
         message: 'Password is required'
       });
     }
-    pool.query('SELECT * FROM users WHERE email = $1', [request.body.email])
+    pool.query('SELECT * FROM users WHERE email = $1', [email])
       .then((data) => {
         const user = data.rows[0];
         if (!user) {
@@ -129,6 +152,7 @@ class UserController {
             message: 'Invalid login details. Email or password is wrong'
           });
         }
+
         /**
      * comparePassword
      * @param {string} hashPassword
@@ -142,6 +166,7 @@ class UserController {
             message: 'Invalid login details. Email or password is wrong'
           });
         }
+
         /**
          * Gnerate Token
          * @param {string} id
@@ -150,8 +175,8 @@ class UserController {
          */
 
         const token = jwt.sign({
-          id: user.id,
-          email: user.email
+            id: user.id,
+            email: user.email
           },
           process.env.SECRET, {
             expiresIn: '24h'
@@ -171,5 +196,3 @@ class UserController {
       }));
   }
 }
-
-export default UserController;

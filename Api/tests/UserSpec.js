@@ -30,7 +30,7 @@ const inValidUser = {
   password: 'dubby'
 };
 
-describe('api/v1/auth/signup', () => {
+describe('', () => {
   beforeEach((done) => {
 pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *', () => {
       done();
@@ -41,6 +41,8 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
       done();
     });
   });
+});
+
 
   describe('User signup', () => {
     it('It Should create user with valid input details', (done) => {
@@ -54,9 +56,9 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
           expect(response).to.status(201);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('User created successfully');
-          expect(response.body.user.firstname).to.equal(user.firstname);
-          expect(response.body.user.lastname).to.equal(user.lastname);
-          expect(response.body.user.email).to.equal(user.email);
+          expect(response.body.user.firstname).to.equal(user2.firstname);
+          expect(response.body.user.lastname).to.equal(user2.lastname);
+          expect(response.body.user.email).to.equal(user2.email);
           expect(response.body).to.have.property('token');
           expect(response.body.token).to.be.a('string');
           done();
@@ -90,7 +92,6 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
         });
     });
 });
-});
 
 
   describe('User login', () => {
@@ -105,7 +106,6 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
         .set('Accept', 'application/json')
         .send(userLogin)
         .end((error, response) => {
-          console.log(response);
           expect(response).to.status(200);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Successfully signed in');
