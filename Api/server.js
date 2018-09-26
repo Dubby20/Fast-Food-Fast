@@ -12,7 +12,7 @@ const port = process.env.PORT || 4000;
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 app.get('/', (request, response) => response.json({
   message: 'Welcome to Limelight Fast Food'

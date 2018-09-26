@@ -9,7 +9,7 @@ const {
 } = chai;
 
 chai.use(chaiHttp);
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Mzc1NDQ0NzIsImV4cCI6MTUzNzYzMDg3Mn0.cN0AYwvndtmfU_VXhrDbtrTCCaVcWsg75UbNFv9HIzg';
+let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
 const user = {
   firstname: 'Jacinta',
   lastname: 'Nnadi',
@@ -23,7 +23,6 @@ const user2 = {
   email: 'duby@yhaoo.com',
   password: 'password'
 };
-
 const inValidUser = {
   firstname: '',
   lastname: 'Nnadi',
@@ -42,7 +41,6 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
       done();
     });
   });
-});
 
 
   describe('User signup', () => {
@@ -51,14 +49,14 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
         .post('/api/v1/auth/signup')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(user2)
+        .send(user)
         .end((error, response) => {
           expect(response).to.status(201);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('User created successfully');
-          expect(response.body.user.firstname).to.equal(user2.firstname);
-          expect(response.body.user.lastname).to.equal(user2.lastname);
-          expect(response.body.user.email).to.equal(user2.email);
+          expect(response.body.user.firstname).to.equal(user.firstname);
+          expect(response.body.user.lastname).to.equal(user.lastname);
+          expect(response.body.user.email).to.equal(user.email);
           expect(response.body).to.have.property('token');
           expect(response.body.token).to.be.a('string');
           done();
@@ -83,7 +81,7 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
         .post('/api/v1/auth/signup')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(user2)
+        .send(user)
         .end((error, response) => {
           expect(response).to.status(409);
           expect(response.body).to.be.an('object');
@@ -92,6 +90,18 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
         });
     });
 });
+});
+
+// before((done) => {
+//   chai.request(server)
+//     .post('/api/v1/auth/login')
+//     .send(user.email)
+//     .end((err, response) => {
+//       if (err) done(err);
+//       userToken = response.body.token;
+//       done();
+//     });
+// });
 
 
   describe('User login', () => {

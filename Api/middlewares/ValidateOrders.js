@@ -1,21 +1,21 @@
-const phoneNumberRegex = /^([0-9{11, 15}]*)$/;
+const phoneNumberRegex = /^(\d{11,15}]*)$/;
 const addressRegex = /^[A-Za-z0-9\s\,\''\-]{5,100}$/;
 
 export class OrderValidator {
-   /**
- * @description Validate order input
- *
- * @constructor
- * @param {String} request foor order
- * @param {Object} response
- *
- * @returns {Object} Object
- */
+  /**
+   * @description Validate order input
+   *
+   * @constructor
+   * @param {String} request foor order
+   * @param {Object} response
+   *
+   * @returns {Object} Object
+   */
   constructor() {
     this.passing = true;
     this.errMessage;
   }
-/** @function testForPhoneNumber
+  /** @function testForPhoneNumber
    *  @param {number}
    * @returns {boolean}
    */
@@ -26,7 +26,7 @@ export class OrderValidator {
       this.errMessage = 'Invalid number, number must be at least 11 digits';
     }
   }
-/** @function testForAddress
+  /** @function testForAddress
    *  @param {string}
    *
    * @returns {boolean}
@@ -35,10 +35,10 @@ export class OrderValidator {
   testForAddress(address) {
     if (!addressRegex.test(address)) {
       this.passing = false;
-      this.errMessage = 'Invalid address';
+      this.errMessage = 'Invalid address details';
     }
   }
-/** @function testForFoodItems
+  /** @function testForFoodItems
    *  @param {Array}
    *
    * @returns {boolean}
@@ -52,18 +52,6 @@ export class OrderValidator {
       }
     });
   }
-/** @function testForStatus
-   *  @param {string}
-   *
-   * @returns {boolean}
-   */
-
-  testForStatus(status) {
-    if (status !== 'Processing' && status !== 'Cancelled' && status !== 'Complete') {
-      this.passing = false;
-      this.errMessage = 'Invalid status, status must be a string containing New, Processing, Cancelled or Complete';
-    }
-  }
 
   /** @function resetValid
    *
@@ -73,7 +61,7 @@ export class OrderValidator {
     this.passing = true;
     this.errMessage = '';
   }
-/** @function testForEmptyStringInput
+  /** @function testForEmptyStringInput
    *  @param {Object}
    * @returns {boolean}
    */
@@ -89,6 +77,8 @@ export class OrderValidator {
 
   testOrders(orders) {
     this.resetValid();
+    this.testForPhoneNumber(orders.phoneNumber);
+    this.testForAddress(orders.address);
     this.testForFoodItems(orders.foodItems);
     this.testForEmptyStringInput(orders);
     const obj = {
