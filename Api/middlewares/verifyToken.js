@@ -28,24 +28,4 @@ const verifyToken = (request, response, next) => {
   }
 };
 
-// const adminRole = (request, response, next) => {
-//   const admin = {
-//     email: 'jacinta@gmail.com',
-//     password: 'limelight'
-//   };
-//   if (request.body.email === admin.email && request.body.password === admin.password) {
-//     const authorization = jwt.sign({
-//       email: admin.email,
-//       expiresIn: 3600
-//     }, process.env.SECRET);
-//     return response.json({
-//       authorization,
-//       email: admin.email
-//     });
-//   }
-//     return response.status(401).json({
-//       message: 'Unauthorized'
-//     });
-// };
-
 export default verifyToken;
