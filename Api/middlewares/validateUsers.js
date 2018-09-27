@@ -67,12 +67,12 @@ export class ValidateUserSignup {
    * @returns {boolean}
    */
 
-  // testEmail(email) {
-  //   // if (emailRegex.test(email)) {
-  //   //   this.passing = false;
-  //   //   this.errMessage = 'Please enter a valid email';
-  //   // }
-  // }
+  testEmail(email) {
+    if (emailRegex.test(email)) {
+      this.passing = false;
+      this.errMessage = 'Please enter a valid email';
+    }
+  }
 
   /** @function testPassword
    *  @param {string}
@@ -108,7 +108,7 @@ export class ValidateUserSignup {
     this.testPassword(users.password);
     this.testLastName(users.lastname);
     this.testFirstName(users.firstname);
-    // this.testEmail(users.email);
+    this.testEmail(users.email);
     this.testForEmptyStringInput(users);
     const obj = {
       passing: this.passing,
