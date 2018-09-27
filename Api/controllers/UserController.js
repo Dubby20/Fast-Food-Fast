@@ -68,7 +68,8 @@ export default class UserController {
         bcrypt.hash(password, 10, (error, hash) => {
           pool.query(
               'INSERT INTO users (firstname, lastname, email, password, is_admin) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-              [firstname, lastname, email, hash, isAdmin])
+              [firstname, lastname, email, hash, isAdmin]
+            )
             .then((data) => {
               const user = data.rows[0];
 

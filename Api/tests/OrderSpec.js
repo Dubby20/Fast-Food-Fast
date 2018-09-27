@@ -17,11 +17,10 @@ const user = {
   lastname: 'Nnadi',
   email: 'jacy@gmail.com',
   password: 'dubby654'
-}
+};
 chai.use(chaiHttp);
-let orderId;
 let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
-let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJlbWFpbCI6Implc3NlQHlhaG9vLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTUzNzk5Mjk4NCwiZXhwIjoxNTM4MDc5Mzg0fQ.oyNyYYc-v0iG6kczoPAkxt7ydpah2V7ukXK8TNJJKTs';
+let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJqZXNzZUB5YWhvby5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1MzgwNDg0MzcsImV4cCI6MTUzODEzNDgzN30.Xk6_qSff7ukcPiq4Ctly4XqNaNR0UEc8W201rPp9CGg';
 const order = {
   phoneNumber: '08186765436',
   address: 'Ikoyi',
@@ -36,7 +35,6 @@ describe('/POST orders', () => {
       .post('/api/v1/auth/login')
       .send(user)
       .end((error, response) => {
-        userToken = response.body.token;
         done();
       });
   });
@@ -95,7 +93,7 @@ describe('/POST orders', () => {
       phoneNumber: 1097765,
       address: '',
       foodItems: []
-    }
+    };
     chai.request(server)
       .post('/api/v1/orders')
       .set('Content-Type', 'application/json')
@@ -175,10 +173,9 @@ describe('/GET orders', () => {
 describe('/GET/orders/:id', () => {
   it('it should GET an order by the given id', (done) => {
     chai.request(server)
-      .get('/api/v1/orders/81')
+      .get('/api/v1/orders/4')
       .set('token', adminToken)
       .end((error, response) => {
-        orderId = response.body.order.id;
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Get a specific order was successful');
         expect(response.body).to.be.an('object');
@@ -218,7 +215,7 @@ describe('/PUT orders/:id', () => {
       status: 'Cancelled'
     };
     chai.request(server)
-      .put('/api/v1/orders/81')
+      .put('/api/v1/orders/4')
       .set('content-Type', 'application/json')
       .set('accept', 'application/json')
       .set('token', adminToken)
