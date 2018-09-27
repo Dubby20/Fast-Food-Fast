@@ -5,14 +5,14 @@ const passwordRegex = /^[A-Za-z0-9]{6,15}$/;
 
 export class ValidateUserSignup {
   /**
- * @description Validate signup
- *
- * @constructor
- * @param {String} request users
- * @param {Object} response users.firstname...
- *
- * @returns {Object} Object
- */
+   * @description Validate signup
+   *
+   * @constructor
+   * @param {String} request users
+   * @param {Object} response users.firstname...
+   *
+   * @returns {Object} Object
+   */
 
 
   constructor() {
@@ -35,11 +35,11 @@ export class ValidateUserSignup {
     }
   }
 
-/** @function testFirstName
-   *  @param {string}
+  /** @function testFirstName
+     *  @param {string}
 
-   * @returns {boolean}
-   */
+     * @returns {boolean}
+     */
 
   testFirstName(firstname) {
     if (!firstnameRegex.test(firstname)) {
@@ -67,12 +67,12 @@ export class ValidateUserSignup {
    * @returns {boolean}
    */
 
-  testEmail(email) {
-    if (emailRegex.test(email)) {
-      this.passing = false;
-      this.errMessage = 'Please enter a valid email';
-    }
-  }
+  // testEmail(email) {
+  //   // if (emailRegex.test(email)) {
+  //   //   this.passing = false;
+  //   //   this.errMessage = 'Please enter a valid email';
+  //   // }
+  // }
 
   /** @function testPassword
    *  @param {string}
