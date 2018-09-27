@@ -68,7 +68,7 @@ export class ValidateUserSignup {
    */
 
   testEmail(email) {
-    if (emailRegex.test(email)) {
+    if (!emailRegex.test(email)) {
       this.passing = false;
       this.errMessage = 'Please enter a valid email';
     }
