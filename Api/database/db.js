@@ -1,5 +1,6 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
+// import migration from './migration.sql';
 
 dotenv.config();
 
@@ -8,5 +9,5 @@ const pool = new pg.Pool({
   ssl: true
 });
 
-
+// pool.query(migration);
 export default pool;

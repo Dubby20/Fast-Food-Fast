@@ -44,24 +44,24 @@ describe('', () => {
 
 
   describe('User signup', () => {
-    // it('It Should create user with valid input details', (done) => {
-    //   chai.request(server)
-    //     .post('/api/v1/auth/signup')
-    //     .set('Content-Type', 'application/json')
-    //     .set('Accept', 'application/json')
-    //     .send(user2)
-    //     .end((error, response) => {
-    //       expect(response).to.status(201);
-    //       expect(response.body).to.be.an('object');
-    //       expect(response.body.message).to.equal('User created successfully');
-    //       expect(response.body.user.firstname).to.equal(user.firstname);
-    //       expect(response.body.user.lastname).to.equal(user.lastname);
-    //       expect(response.body.user.email).to.equal(user.email);
-    //       expect(response.body).to.have.property('token');
-    //       expect(response.body.token).to.be.a('string');
-    //       done();
-    //     });
-    // });
+    it('It Should create user with valid input details', (done) => {
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(user)
+        .end((error, response) => {
+          expect(response).to.status(201);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('User created successfully');
+          expect(response.body.user.firstname).to.equal(user2.firstname);
+          expect(response.body.user.lastname).to.equal(user2.lastname);
+          expect(response.body.user.email).to.equal(user2.email);
+          expect(response.body).to.have.property('token');
+          expect(response.body.token).to.be.a('string');
+          done();
+        });
+    });
 
     it('It Should not create a user with Invalid input details', (done) => {
       chai.request(server)
@@ -95,8 +95,8 @@ describe('', () => {
   describe('User login', () => {
     it('It should login a user with a valid input details', (done) => {
       const userLogin = {
-        email: 'jacy@gmail.com',
-        password: 'dubby654'
+        email: 'duby@yhaoo.com',
+        password: 'password'
       };
       chai.request(server)
         .post('/api/v1/auth/login')
@@ -134,7 +134,7 @@ describe('', () => {
 
     it('It should not login a user with Invalid password details', (done) => {
       const userLogin = {
-        email: 'jacy@gmail.com',
+        email: 'duby@yhaoo.com',
         password: 'dubby'
       };
       chai.request(server)

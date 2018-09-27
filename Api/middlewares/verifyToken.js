@@ -15,6 +15,7 @@ class verifyToken {
     if (token) {
       jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (decoded.isAdmin !== true) {
+          console.log(decoded);
           return response.status(403).json({
             message: 'Authentication failed'
           });
@@ -43,7 +44,7 @@ class verifyToken {
     if (token) {
       jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err) {
-          return response.status(401).json({
+          return response.status(403).json({
             message: 'Authentication failed'
           });
         }
