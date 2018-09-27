@@ -5,21 +5,42 @@ import server from '../server';
 const {
   expect
 } = chai;
-
+const adminUser = {
+  firstname: 'Jesse',
+  lastname: 'Dana',
+  email: 'jesse@yahoo.com',
+  password: 'andela',
+  isAdmin: true
+};
+const user = {
+  firstname: 'Jacinta',
+  lastname: 'Nnadi',
+  email: 'jacy@gmail.com',
+  password: 'dubby654'
+}
 chai.use(chaiHttp);
 let orderId;
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
-const adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJlbWFpbCI6Implc3NlQHlhaG9vLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTUzNzk5Mjk4NCwiZXhwIjoxNTM4MDc5Mzg0fQ.oyNyYYc-v0iG6kczoPAkxt7ydpah2V7ukXK8TNJJKTs';
+let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
+let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJlbWFpbCI6Implc3NlQHlhaG9vLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTUzNzk5Mjk4NCwiZXhwIjoxNTM4MDc5Mzg0fQ.oyNyYYc-v0iG6kczoPAkxt7ydpah2V7ukXK8TNJJKTs';
+const order = {
+  phoneNumber: '08186765436',
+  address: 'Ikoyi',
+  foodItems: [{
+    foodId: 1,
+    quantity: 2
+  }]
+};
 describe('/POST orders', () => {
+  before((done) => {
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(user)
+      .end((error, response) => {
+        userToken = response.body.token;
+        done();
+      });
+  });
   it('it should add a new order', (done) => {
-    const order = {
-      phoneNumber: '08186765436',
-      address: 'Ikoyi',
-      foodItems: [{
-        foodId: 1,
-        quantity: 2
-      }]
-    };
     chai.request(server)
       .post('/api/v1/orders')
       .set('Content-Type', 'application/json')
@@ -34,10 +55,25 @@ describe('/POST orders', () => {
       });
   });
 
-  it('it should not add a new order if input is not valid', (done) => {
-    const order = {
-      phoneNumber: 1097765,
-      address: '',
+  it('it should not add a menu if the user is not authenticated', (done) => {
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('token', '')
+      .send(order)
+      .end((error, response) => {
+        expect(response).to.have.status(401);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('Unauthorized');
+        done();
+      });
+  });
+
+  it('it should not place an empty order', (done) => {
+    const invalidOrder = {
+      phoneNumber: '',
+      address: 'Ikoyi',
       foodItems: []
     };
     chai.request(server)
@@ -45,30 +81,65 @@ describe('/POST orders', () => {
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .set('token', userToken)
-      .send(order)
+      .send(invalidOrder)
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('Input fields must not be empty');
+        done();
+      });
+  });
+
+  it('it should not add a new order if input is not valid', (done) => {
+    const order2 = {
+      phoneNumber: 1097765,
+      address: '',
+      foodItems: []
+    }
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('token', userToken)
+      .send(order2)
       .end((error, response) => {
         expect(response).to.have.status(400);
         expect(response.body).to.be.an('object');
         done();
       });
   });
-});
 
-describe('/GET orders', () => {
-  it('it should get user order history', (done) => {
+  it('it should not place an order if the user is not authenticated', (done) => {
     chai.request(server)
-      .get('/api/v1/users/237/orders')
+      .post('/api/v1/orders')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .set('token', userToken)
+      .set('token', '')
+      .send(order)
       .end((error, response) => {
-        expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('Successful');
-        expect(response.body.orders).to.be.an('array');
+        expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('Unauthorized');
         done();
       });
   });
+});
+
+describe('/GET orders', () => {
+  // it('it should get user order history', (done) => {
+  //   chai.request(server)
+  //     .get('/api/v1/users/237/orders')
+  //     .set('Content-Type', 'application/json')
+  //     .set('Accept', 'application/json')
+  //     .set('token', userToken)
+  //     .end((error, response) => {
+  //       expect(response).to.have.status(200);
+  //       expect(response.body.message).to.equal('Successful');
+  //       expect(response.body.orders).to.be.an('array');
+  //       expect(response.body).to.be.an('object');
+  //       done();
+  //     });
+  // });
 
   it('it should return an error message if the user id is not a number', (done) => {
     chai.request(server)
@@ -104,7 +175,7 @@ describe('/GET orders', () => {
 describe('/GET/orders/:id', () => {
   it('it should GET an order by the given id', (done) => {
     chai.request(server)
-      .get('/api/v1/orders/35')
+      .get('/api/v1/orders/81')
       .set('token', adminToken)
       .end((error, response) => {
         orderId = response.body.order.id;
@@ -147,7 +218,7 @@ describe('/PUT orders/:id', () => {
       status: 'Cancelled'
     };
     chai.request(server)
-      .put('/api/v1/orders/35')
+      .put('/api/v1/orders/81')
       .set('content-Type', 'application/json')
       .set('accept', 'application/json')
       .set('token', adminToken)
