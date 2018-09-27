@@ -7,8 +7,13 @@ const {
 } = chai;
 
 chai.use(chaiHttp);
-
-const adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJlbWFpbCI6Implc3NlQHlhaG9vLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTUzNzk5Mjk4NCwiZXhwIjoxNTM4MDc5Mzg0fQ.oyNyYYc-v0iG6kczoPAkxt7ydpah2V7ukXK8TNJJKTs';
+const user = {
+  firstname: 'Jacinta',
+  lastname: 'Nnadi',
+  email: 'jacy@gmail.com',
+  password: 'dubby654'
+};
+let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJlbWFpbCI6Implc3NlQHlhaG9vLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTUzNzk5Mjk4NCwiZXhwIjoxNTM4MDc5Mzg0fQ.oyNyYYc-v0iG6kczoPAkxt7ydpah2V7ukXK8TNJJKTs';
 describe('/POST menu', () => {
       it('it should add a new menu', (done) => {
         const menu = {
@@ -39,11 +44,12 @@ describe('/POST menu', () => {
           .post('/api/v1/menu')
           .set('Content-Type', 'application/json')
           .set('Accept', 'application/json')
+          .set('token', adminToken)
           .send(menu)
           .end((error, response) => {
             expect(response).to.status(400);
             expect(response.body).to.be.an('object');
-            expect(response.body.message).to.equal('Food Name is required');
+            expect(response.body.message).to.equal('Input fields must not be empty');
             done();
           });
         });
@@ -56,11 +62,12 @@ describe('/POST menu', () => {
             .post('/api/v1/menu')
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
+          .set('token', adminToken)
             .send(menu2)
             .end((error, response) => {
               expect(response).to.status(400);
               expect(response.body).to.be.an('object');
-              expect(response.body.message).to.equal('Price is required');
+              expect(response.body.message).to.equal('Input fields must not be empty');
               done();
             });
         });

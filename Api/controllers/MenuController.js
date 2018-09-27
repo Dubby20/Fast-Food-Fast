@@ -39,18 +39,6 @@ export default class MenuController {
       description,
       price
     } = request.body;
-    if (!foodName) {
-       response.status(400).json({
-        status: 'Error',
-        message: 'Food Name is required'
-      });
-    }
-    if (!price) {
-      response.status(400).json({
-        status: 'Error',
-        message: 'Price is required'
-      });
-    }
     pool.query('INSERT INTO food_menu (food_name, food_image, description, price, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [foodName, foodImage, description, price, request.decoded.id])
       .then((data) => {
@@ -81,7 +69,7 @@ export default class MenuController {
       .then((data) => {
         const menu = data.rows;
         if (menu.length === 0) {
-          return response.status(400).json({
+          return response.status(404).json({
             message: 'No available menu yet'
           });
         }

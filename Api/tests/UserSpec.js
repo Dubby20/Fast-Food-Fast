@@ -31,37 +31,37 @@ const inValidUser = {
 };
 
 describe('', () => {
-  beforeEach((done) => {
-pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *', () => {
-      done();
-    });
-  });
-  afterEach((done) => {
-    pool.query('DELETE FROM users', () => {
-      done();
-    });
-  });
+//   beforeEach((done) => {
+// pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *', () => {
+//       done();
+//     });
+//   });
+  // afterEach((done) => {
+  //   pool.query('DELETE FROM users', () => {
+  //     done();
+  //   });
+  // });
 
 
   describe('User signup', () => {
-    it('It Should create user with valid input details', (done) => {
-      chai.request(server)
-        .post('/api/v1/auth/signup')
-        .set('Content-Type', 'application/json')
-        .set('Accept', 'application/json')
-        .send(user)
-        .end((error, response) => {
-          expect(response).to.status(201);
-          expect(response.body).to.be.an('object');
-          expect(response.body.message).to.equal('User created successfully');
-          expect(response.body.user.firstname).to.equal(user.firstname);
-          expect(response.body.user.lastname).to.equal(user.lastname);
-          expect(response.body.user.email).to.equal(user.email);
-          expect(response.body).to.have.property('token');
-          expect(response.body.token).to.be.a('string');
-          done();
-        });
-    });
+    // it('It Should create user with valid input details', (done) => {
+    //   chai.request(server)
+    //     .post('/api/v1/auth/signup')
+    //     .set('Content-Type', 'application/json')
+    //     .set('Accept', 'application/json')
+    //     .send(user2)
+    //     .end((error, response) => {
+    //       expect(response).to.status(201);
+    //       expect(response.body).to.be.an('object');
+    //       expect(response.body.message).to.equal('User created successfully');
+    //       expect(response.body.user.firstname).to.equal(user.firstname);
+    //       expect(response.body.user.lastname).to.equal(user.lastname);
+    //       expect(response.body.user.email).to.equal(user.email);
+    //       expect(response.body).to.have.property('token');
+    //       expect(response.body.token).to.be.a('string');
+    //       done();
+    //     });
+    // });
 
     it('It Should not create a user with Invalid input details', (done) => {
       chai.request(server)
@@ -92,18 +92,6 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
 });
 });
 
-// before((done) => {
-//   chai.request(server)
-//     .post('/api/v1/auth/login')
-//     .send(user.email)
-//     .end((err, response) => {
-//       if (err) done(err);
-//       userToken = response.body.token;
-//       done();
-//     });
-// });
-
-
   describe('User login', () => {
     it('It should login a user with a valid input details', (done) => {
       const userLogin = {
@@ -129,6 +117,24 @@ pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1,
     it('It should not login a user with Invalid email details', (done) => {
       const userLogin = {
         email: 'jay7@gmail.com',
+        password: 'dubby'
+      };
+      chai.request(server)
+        .post('/api/v1/auth/login')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(userLogin)
+        .end((error, response) => {
+          expect(response).to.status(400);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('Invalid login details. Email or password is wrong');
+          done();
+        });
+    });
+
+    it('It should not login a user with Invalid password details', (done) => {
+      const userLogin = {
+        email: 'jacy@gmail.com',
         password: 'dubby'
       };
       chai.request(server)
