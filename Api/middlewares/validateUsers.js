@@ -108,7 +108,7 @@ export class ValidateUserSignup {
     this.testPassword(users.password);
     this.testLastName(users.lastname);
     this.testFirstName(users.firstname);
-    this.testEmail(users.email);
+    // this.testEmail(users.email);
     this.testForEmptyStringInput(users);
     const obj = {
       passing: this.passing,
