@@ -9,14 +9,13 @@ const {
 } = chai;
 
 chai.use(chaiHttp);
-// let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
 
 const user2 = {
   firstname: 'Dubby',
   lastname: 'Alex',
   email: 'duby@yahoo.com',
   password: 'password'
-  // isAdmin: true
+
 };
 const inValidUser = {
   firstname: 'ja12',
@@ -111,7 +110,7 @@ describe('User', () => {
         .set('Accept', 'application/json')
         .send(userLogin2)
         .end((error, response) => {
-          expect(response).to.status(400);
+          expect(response).to.status(422);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Invalid login details. Email or password is wrong');
           done();
@@ -129,7 +128,7 @@ describe('User', () => {
         .set('Accept', 'application/json')
         .send(userLogin3)
         .end((error, response) => {
-          expect(response).to.status(400);
+          expect(response).to.status(422);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Invalid login details. Email or password is wrong');
           done();
@@ -147,7 +146,7 @@ describe('User', () => {
         .set('Accept', 'application/json')
         .send(userLogin4)
         .end((error, response) => {
-          expect(response).to.status(400);
+          expect(response).to.status(204);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Email is required');
           done();
@@ -165,7 +164,7 @@ describe('User', () => {
         .set('Accept', 'application/json')
         .send(userLogin5)
         .end((error, response) => {
-          expect(response).to.status(400);
+          expect(response).to.status(204);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Password is required');
           done();
