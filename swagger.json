@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Fast-Food-Fast is a food delivery service app for a restaurant[Limelight](https://dubby20.github.io/Fast-Food-Fast/)",
+    "description": "Fast-Food-Fast is a food delivery service app for a restaurant [Limelight](https://dubby20.github.io/Fast-Food-Fast/)",
     "version": "1.0.0",
     "title": "Fast-Food-Fast",
     "termsOfService": "http://swagger.io/terms/",
@@ -13,10 +13,10 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "https://limelight-fastfood.herokuapp.com/",
+  "host": "https://limelight-fastfood.herokuapp.com",
   "basePath": "/api/v1",
   "tags": [{
-      "name": "user",
+      "name": "Users",
       "description": "Creating an account as a user",
       "externalDocs": {
         "description": "User registration and login",
@@ -24,15 +24,15 @@
       }
     },
     {
-      "name": "orders",
+      "name": "Orders",
       "description": "Everything about making an order",
       "externalDocs": {
         "description": "Find out more about placing an order",
-        "url": "https://limelight-fastfood.herokuapp.com/"
+        "url": "https://limelight-fastfood.herokuapp.com"
       }
     },
     {
-      "name": "menu",
+      "name": "Menu",
       "description": "Details of the food menu",
       "externalDocs": {
         "description": "Find out more about the food menu",
@@ -48,7 +48,7 @@
     "/auth/signup": {
       "post": {
         "tags": [
-          "user"
+          "Users"
         ],
         "summary": "Add a new user",
         "description": "Registers a user into the application",
@@ -75,12 +75,14 @@
           "409": {
             "description": "Email already exists"
           }
-        },
+        }
+      }
+    },
 
         "/auth/login": {
           "post": {
             "tags": [
-              "user"
+              "Users"
             ],
             "summary": "Login a user",
             "description": "Logs user into the application",
@@ -113,10 +115,11 @@
 
           }
         },
+
         "/orders": {
           "post": {
             "tags": [
-              "orders"
+              "Orders"
             ],
             "summary": "Place an order",
             "description": "User can place an order for food",
@@ -146,9 +149,10 @@
               }
             }
           },
+          
           "get": {
             "tags": [
-              "orders"
+              "Orders"
             ],
             "summary": "Get all orders",
             "description": "Get all users orders",
@@ -185,7 +189,7 @@
         "/users/{userId}/orders": {
           "get": {
             "tags": [
-              "orders"
+              "Orders"
             ],
             "summary": "Finds user order history",
             "description": "The order history of a particlar user",
@@ -219,7 +223,7 @@
         "/orders/{orderId}": {
           "get": {
             "tags": [
-              "orders"
+              "Orders"
             ],
             "summary": "Find order by ID",
             "description": "Returns a single order",
@@ -252,7 +256,7 @@
           },
           "put": {
             "tags": [
-              "orders"
+              "Orders"
             ],
             "summary": "Updates the status of an order",
             "description": "The order status could either be New, Processing, Cancelled or Complete",
@@ -291,12 +295,13 @@
                 "description": "The status with the given order id was not found"
               }
             }
-          },
+          }
+        },
 
           "/menu": {
             "post": {
               "tags": [
-                "menu"
+                "Menu"
               ],
               "summary": "Post menu",
               "description": "Add meal to the menu",
@@ -329,7 +334,7 @@
 
             "get": {
               "tags": [
-                "menu"
+                "Menu"
               ],
               "summary": "Get menu",
               "description": "Get all available menu",
@@ -368,11 +373,17 @@
           },
           "definitions": {
             "xml": {
-              "name": "orders"
+              "name": "Orders"
             }
           },
             "Order": {
               "type": "object",
+              "required": [
+                "phoneNumber",
+                "address",
+                "status",
+                "totalPrice"
+              ],
               "properties": {
                 "id": {
                   "type": "integer",
@@ -410,6 +421,11 @@
               },
               "foodItems": {
                 "type": "array",
+                "required": [
+                  "foodName",
+                  "quantity",
+                  "price"
+                ],
                 "items": {
                   "type": "object",
                   "properties": {
@@ -430,11 +446,17 @@
               }
             },
             "xml": {
-              "name": "user"
-            }
-          },
-            "User": {
+              "name": "Users"
+            },
+          
+            "UserSignup": {
               "type": "object",
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "password"
+              ],
               "properties": {
                 "id": {
                   "type": "integer",
@@ -468,19 +490,22 @@
                 "name": "User"
               }
             },
-            "Tag": {
+            "UserLogin": {
               "type": "object",
+              "required": [
+                "email",
+                "password"
+              ],
               "properties": {
-                "id": {
-                  "type": "integer",
-                  "format": "int64"
+                "email": {
+                  "type": "string"
                 },
-                "name": {
+                "password": {
                   "type": "string"
                 }
               },
               "xml": {
-                "name": "menu"
+                "name": "Menu"
               }
             },
             "Menu": {
@@ -496,18 +521,20 @@
                   "type": "integer",
                   "format": "int64"
                 },
-                "name": {
+                "foodName": {
                   "type": "string",
                   "example": "Fried Rice"
                 },
-                "photoUrls": {
+                "foodImage": {
                   "type": "string",
                   "xml": {
-                    "name": "photoUrl",
-                    "wrapped": true
+                    "name": "photoUrl"
                   },
                   "price": {
                     "type": "numeric"
+                  },
+                  "description": {
+                    "type": "string"
                   }
                 },
                 "tags": {
@@ -546,12 +573,14 @@
                   "type": "string"
                 }
               }
-            }
-          },
+            },
+          
           "externalDocs": {
             "description": "Find out more about Fast-Food-Fast",
             "url": "https://limelight-fastfood.herokuapp.com/api/v1/auth/login"
           }
         }
+
       }
-    }
+      
+    
