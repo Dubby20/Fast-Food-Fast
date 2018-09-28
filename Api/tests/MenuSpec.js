@@ -48,7 +48,10 @@ describe('/POST menu', () => {
 
   it('It should return an error if foodName is not provided', (done) => {
     const menu = {
-      foodName: ''
+      foodName: '',
+      foodImage: 'httpsampbusi.jpg',
+      description: 'lorem',
+      price: 1000
     };
     chai.request(server)
       .post('/api/v1/menu')
@@ -66,6 +69,9 @@ describe('/POST menu', () => {
 
   it('It should return an error if price is not provided', (done) => {
     const menu2 = {
+      foodName: 'Fried Rice',
+      foodImage: 'httpsampbusi.jpg',
+      description: 'lorem',
       price: ''
     };
     chai.request(server)

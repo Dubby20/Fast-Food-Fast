@@ -48,9 +48,11 @@ export default class MenuController {
           status: 'Success',
           message: 'Menu added successfully'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((error) => {
+        response.status(500).json({
+          message: `${error}`
+        });
+      });
   }
 /**
    * @description get all available menu
@@ -77,8 +79,10 @@ export default class MenuController {
           menu,
           message: 'Successful'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((error) => {
+        response.status(500).json({
+          message: `${error}`
+        });
+      });
   }
 }

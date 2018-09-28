@@ -67,12 +67,12 @@ class OrderController {
       .then((data) => {
         const orders = data.rows;
         if (orders.length === 0) {
-          response.status(404).json({
+          return response.status(404).json({
             status: 'Error',
             message: 'User has no order history'
           });
         }
-        return response.status(200).json({
+        response.status(200).json({
           orders,
           message: 'Successful'
         });
@@ -96,12 +96,12 @@ class OrderController {
       .then((data) => {
         const orders = data.rows;
         if (orders.length === 0) {
-          response.status(404).json({
+          return response.status(404).json({
             status: 'Error',
             message: 'No order yet'
           });
         }
-        return response.status(200).json({
+        response.status(200).json({
           orders,
           message: 'All orders was Successful'
         });
@@ -130,12 +130,12 @@ class OrderController {
       .then((data) => {
         const order = data.rows[0];
         if (!order) {
-          response.status(404).json({
+          return response.status(404).json({
             status: 'Error',
             message: 'The id of the given order was not found'
           });
         }
-        return response.status(200).json({
+        response.status(200).json({
           order,
           message: 'Get a specific order was successful'
         });
@@ -159,7 +159,7 @@ class OrderController {
       status
     } = request.body;
     if (!status) {
-      response.status(400).json({
+      return response.status(400).json({
         status: 'Error',
         message: 'Status is required'
       });
@@ -178,12 +178,12 @@ class OrderController {
       .then((data) => {
         const orderStatus = data.rows;
         if (orderStatus.length < 1) {
-          response.status(404).json({
+          return response.status(404).json({
             status: 'Error',
             message: 'The status with the given order id was not found'
           });
         }
-        return response.status(200).json({
+        response.status(200).json({
           orderStatus,
           message: 'Status updated successfully'
         });

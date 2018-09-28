@@ -87,7 +87,7 @@ export default class UserController {
               }, process.env.SECRET, {
                 expiresIn: '24h'
               });
-              return response.status(201).json({
+              response.status(201).json({
                 token,
                 status: 'Success',
                 message: 'User created successfully',
