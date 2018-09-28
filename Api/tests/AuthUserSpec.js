@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import pool from '../database/db';
 import server from '../server';
+import pool from '../database/db';
 
 
 const {
@@ -9,39 +9,28 @@ const {
 } = chai;
 
 chai.use(chaiHttp);
-let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
-const user = {
-  firstname: 'Jacinta',
-  lastname: 'Nnadi',
-  email: 'jacy@gmail.com',
-  password: 'dubby654'
-};
 
 const user2 = {
   firstname: 'Dubby',
   lastname: 'Alex',
-  email: 'duby@yhaoo.com',
+  email: 'duby@yahoo.com',
   password: 'password'
+
 };
 const inValidUser = {
-  firstname: '',
+  firstname: 'ja12',
   lastname: 'Nnadi',
-  email: 'jacy@gmail.com',
+  email: 'jacgmail.om',
   password: 'dubby'
 };
 
-describe('', () => {
-//   beforeEach((done) => {
-// pool.query('INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *', () => {
-//       done();
-//     });
-//   });
-  // afterEach((done) => {
-  //   pool.query('DELETE FROM users', () => {
-  //     done();
-  //   });
-  // });
-
+describe('User', () => {
+  before((done) => {
+    pool.query(('DELETE from users where email = \'duby@yahoo.com\''))
+      .then(() => {
+        done();
+      }).catch(() => done());
+  });
 
   describe('User signup', () => {
     it('It Should create user with valid input details', (done) => {
@@ -49,14 +38,11 @@ describe('', () => {
         .post('/api/v1/auth/signup')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(user)
+        .send(user2)
         .end((error, response) => {
           expect(response).to.status(201);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('User created successfully');
-          expect(response.body.user.firstname).to.equal(user2.firstname);
-          expect(response.body.user.lastname).to.equal(user2.lastname);
-          expect(response.body.user.email).to.equal(user2.email);
           expect(response.body).to.have.property('token');
           expect(response.body.token).to.be.a('string');
           done();
@@ -81,7 +67,7 @@ describe('', () => {
         .post('/api/v1/auth/signup')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(user)
+        .send(user2)
         .end((error, response) => {
           expect(response).to.status(409);
           expect(response.body).to.be.an('object');
@@ -89,13 +75,13 @@ describe('', () => {
           done();
         });
     });
-});
-});
+  });
+
 
   describe('User login', () => {
     it('It should login a user with a valid input details', (done) => {
       const userLogin = {
-        email: 'duby@yhaoo.com',
+        email: 'duby@yahoo.com',
         password: 'password'
       };
       chai.request(server)
@@ -107,7 +93,6 @@ describe('', () => {
           expect(response).to.status(200);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Successfully signed in');
-          expect(response.body.user.email).to.equal(userLogin.email);
           expect(response.body).to.have.property('token');
           expect(response.body.token).to.be.a('string');
           done();
@@ -115,17 +100,17 @@ describe('', () => {
     });
 
     it('It should not login a user with Invalid email details', (done) => {
-      const userLogin = {
+      const userLogin2 = {
         email: 'jay7@gmail.com',
-        password: 'dubby'
+        password: 'password'
       };
       chai.request(server)
         .post('/api/v1/auth/login')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(userLogin)
+        .send(userLogin2)
         .end((error, response) => {
-          expect(response).to.status(400);
+          expect(response).to.status(422);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Invalid login details. Email or password is wrong');
           done();
@@ -133,17 +118,17 @@ describe('', () => {
     });
 
     it('It should not login a user with Invalid password details', (done) => {
-      const userLogin = {
-        email: 'duby@yhaoo.com',
+      const userLogin3 = {
+        email: 'duby@yahoo.com',
         password: 'dubby'
       };
       chai.request(server)
         .post('/api/v1/auth/login')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(userLogin)
+        .send(userLogin3)
         .end((error, response) => {
-          expect(response).to.status(400);
+          expect(response).to.status(422);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Invalid login details. Email or password is wrong');
           done();
@@ -151,7 +136,7 @@ describe('', () => {
     });
 
     it('It should not login a user when the email is not given or invalid', (done) => {
-      const userLogin = {
+      const userLogin4 = {
         email: '',
         password: 'dubby654'
       };
@@ -159,7 +144,7 @@ describe('', () => {
         .post('/api/v1/auth/login')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(userLogin)
+        .send(userLogin4)
         .end((error, response) => {
           expect(response).to.status(400);
           expect(response.body).to.be.an('object');
@@ -169,7 +154,7 @@ describe('', () => {
     });
 
     it('It should not login a user when the password is not given or invalid', (done) => {
-      const userLogin = {
+      const userLogin5 = {
         email: 'jay7@gmail.com',
         password: ''
       };
@@ -177,7 +162,7 @@ describe('', () => {
         .post('/api/v1/auth/login')
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
-        .send(userLogin)
+        .send(userLogin5)
         .end((error, response) => {
           expect(response).to.status(400);
           expect(response.body).to.be.an('object');
@@ -186,3 +171,4 @@ describe('', () => {
         });
     });
   });
+});

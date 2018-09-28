@@ -8,19 +8,22 @@ const {
 const adminUser = {
   firstname: 'Jesse',
   lastname: 'Dana',
-  email: 'jesse@yahoo.com',
-  password: 'andela',
+  email: 'dana@yahoo.com',
+  password: 'andela1',
   isAdmin: true
 };
 const user = {
-  firstname: 'Jacinta',
-  lastname: 'Nnadi',
-  email: 'jacy@gmail.com',
-  password: 'dubby654'
+  firstname: 'Dubby',
+  lastname: 'Alex',
+  email: 'duby@yhaoo.com',
+  password: 'password'
 };
 chai.use(chaiHttp);
-let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM3LCJlbWFpbCI6ImphY3lAZ21haWwuY29tIiwiaXNBZG1pbiI6bnVsbCwiaWF0IjoxNTM3OTkwNzIyLCJleHAiOjE1MzgwNzcxMjJ9.4ZmAgG0r0PCReeuusTDREu_cMo-LunoF_2hIFay-p50';
-let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJqZXNzZUB5YWhvby5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1MzgwNDg0MzcsImV4cCI6MTUzODEzNDgzN30.Xk6_qSff7ukcPiq4Ctly4XqNaNR0UEc8W201rPp9CGg';
+let userToken;
+//  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkdWJ5QHloYW9vLmNvbSIsImlzQWRtaW4iOm51bGwsImlhdCI6MTUzODA4MjE3NCwiZXhwIjoxNTM4MTY4NTc0fQ.AnzJWRrJVtCjEwcJnAqQ6cKYfEr9CaajnmI1Bbb2bHM';
+let adminToken;
+//  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTE4LCJlbWFpbCI6ImRhbmFAeWFob28uY29tIiwiaWF0IjoxNTM4MDgwOTU5LCJleHAiOjE1MzgxNjczNTl9.MNw-1HMddC_oWf-fqXdhOWqkltPhtjMKNSav9LBh2rU';
+
 const order = {
   phoneNumber: '08186765436',
   address: 'Ikoyi',
@@ -35,6 +38,7 @@ describe('/POST orders', () => {
       .post('/api/v1/auth/login')
       .send(user)
       .end((error, response) => {
+        userToken = response.body.token;
         done();
       });
   });
@@ -49,21 +53,6 @@ describe('/POST orders', () => {
         expect(response).to.have.status(201);
         expect(response.body).to.be.an('object');
         expect(response.body).to.have.property('message').eql('Order placed successfully');
-        done();
-      });
-  });
-
-  it('it should not add a menu if the user is not authenticated', (done) => {
-    chai.request(server)
-      .post('/api/v1/orders')
-      .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
-      .set('token', '')
-      .send(order)
-      .end((error, response) => {
-        expect(response).to.have.status(401);
-        expect(response.body).to.be.an('object');
-        expect(response.body).to.have.property('message').eql('Unauthorized');
         done();
       });
   });
@@ -124,20 +113,20 @@ describe('/POST orders', () => {
 });
 
 describe('/GET orders', () => {
-  // it('it should get user order history', (done) => {
-  //   chai.request(server)
-  //     .get('/api/v1/users/237/orders')
-  //     .set('Content-Type', 'application/json')
-  //     .set('Accept', 'application/json')
-  //     .set('token', userToken)
-  //     .end((error, response) => {
-  //       expect(response).to.have.status(200);
-  //       expect(response.body.message).to.equal('Successful');
-  //       expect(response.body.orders).to.be.an('array');
-  //       expect(response.body).to.be.an('object');
-  //       done();
-  //     });
-  // });
+  it('it should get user order history', (done) => {
+    chai.request(server)
+      .get('/api/v1/users/95/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('token', userToken)
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('Successful');
+        expect(response.body.orders).to.be.an('array');
+        expect(response.body).to.be.an('object');
+        done();
+      });
+  });
 
   it('it should return an error message if the user id is not a number', (done) => {
     chai.request(server)
@@ -155,6 +144,15 @@ describe('/GET orders', () => {
 });
 
 describe('/GET orders', () => {
+  before((done) => {
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(adminUser)
+      .end((error, response) => {
+        adminToken = response.body.token;
+        done();
+      });
+  });
   it('it should GET all orders', (done) => {
     chai.request(server)
       .get('/api/v1/orders')
@@ -197,7 +195,7 @@ describe('/GET/orders/:id', () => {
 
   it('it should return an error message when the given ID is not found', (done) => {
     chai.request(server)
-      .get('/api/v1/orders/60')
+      .get('/api/v1/orders/1')
       .set('token', adminToken)
       .end((error, response) => {
         expect(response).to.have.status(404);
@@ -215,7 +213,7 @@ describe('/PUT orders/:id', () => {
       status: 'Cancelled'
     };
     chai.request(server)
-      .put('/api/v1/orders/4')
+      .put('/api/v1/orders/68')
       .set('content-Type', 'application/json')
       .set('accept', 'application/json')
       .set('token', adminToken)
@@ -233,7 +231,7 @@ describe('/PUT orders/:id', () => {
       status: ''
     };
     chai.request(server)
-      .put('/api/v1/orders/3')
+      .put('/api/v1/orders/4')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .set('token', adminToken)
@@ -265,7 +263,7 @@ describe('/PUT orders/:id', () => {
 
   it('it should not UPDATE status of an order id that is not available', (done) => {
     chai.request(server)
-      .put('/api/v1/orders/70')
+      .put('/api/v1/orders/1')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .set('token', adminToken)
