@@ -2,8 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 
-
 import router from './routes/routes';
+
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 4000;
