@@ -20,7 +20,7 @@ export default class MenuController {
   static addMenu(request, response) {
     const results = validateMenu.testFoodMenu(request.body);
     if (!results.passing) {
-      response.status(400).json({
+      return response.status(400).json({
         message: results.err
       });
     }
@@ -48,9 +48,9 @@ export default class MenuController {
           status: 'Success',
           message: 'Menu added successfully'
         });
-      }).catch((error) => {
-        response.status(500).json({
-          message: `${error}`
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
         });
       });
   }
@@ -79,9 +79,9 @@ export default class MenuController {
           menu,
           message: 'Successful'
         });
-      }).catch((error) => {
-        response.status(500).json({
-          message: `${error}`
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
         });
       });
   }

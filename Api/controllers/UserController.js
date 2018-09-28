@@ -27,7 +27,7 @@ export default class UserController {
   static signup(request, response) {
     const results = validateSignup.testUsers(request.body);
     if (!results.passing) {
-      response.status(400).json({
+      return response.status(400).json({
         message: results.err
       });
     }
@@ -53,7 +53,7 @@ export default class UserController {
       .then((result) => {
         const emailExists = result.rows[0];
         if (emailExists) {
-          response.status(409).json({
+          return response.status(409).json({
             status: 'Error',
             message: 'Email already exists'
           });
@@ -87,24 +87,22 @@ export default class UserController {
               }, process.env.SECRET, {
                 expiresIn: '24h'
               });
-              response.status(201).json({
+             return response.status(201).json({
                 token,
                 status: 'Success',
-                message: 'User created successfully',
-                user: {
-                  firstname: user.firstname,
-                  lastname: user.lastname,
-                  email: user.email,
-                  isAdmin: user.is_admin
-                }
+                message: 'User created successfully'
               });
-            }).catch(err => response.status(500).json({
-              message: err.message
-            }));
+            }).catch((err) => {
+              return response.status(500).json({
+                message: err.message
+              });
+            });
         });
-      }).catch(err => response.status(501).json({
-        message: err.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
 
   /**
@@ -133,13 +131,13 @@ export default class UserController {
     } = request.body;
 
     if (!email) {
-      response.status(400).json({
+      return response.status(400).json({
         status: 'Error',
         message: 'Email is required'
       });
     }
     if (!password) {
-      response.status(400).json({
+      return response.status(400).json({
         status: 'Error',
         message: 'Password is required'
       });
@@ -148,7 +146,7 @@ export default class UserController {
       .then((data) => {
         const user = data.rows[0];
         if (!user) {
-          response.status(400).json({
+          return response.status(400).json({
             status: 'Error',
             message: 'Invalid login details. Email or password is wrong'
           });
@@ -186,15 +184,12 @@ export default class UserController {
         return response.status(200).json({
           token,
           status: 'Success',
-          message: 'Successfully signed in',
-          user: {
-            id: user.id,
-            email: user.email
-          }
+          message: 'Successfully signed in'
         });
-      }).catch(error => response.status(501).json({
-        status: 'Fail',
-        message: error.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
 }

@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
+// import swaggerUi from 'swagger-ui-express';
+// import swaggerDocument from './swagger.json';
 
 import router from './routes/routes';
 
@@ -13,8 +15,9 @@ const port = process.env.PORT || 4000;
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('/', (request, response) => response.json({
   message: 'Welcome to Limelight Fast Food'
 }));

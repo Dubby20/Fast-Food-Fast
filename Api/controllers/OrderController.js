@@ -23,7 +23,7 @@ class OrderController {
   static placeOrder(request, response) {
     const result = orderValidator.testOrders(request.body);
     if (!result.passing) {
-      response.status(400).json({
+      return response.status(400).json({
         message: result.err
       });
     }
@@ -36,14 +36,16 @@ class OrderController {
         [request.decoded.id, phoneNumber, address, JSON.stringify(foodItems)])
       .then((data) => {
         const order = data.rows[0];
-        response.status(201).json({
+        return response.status(201).json({
           order,
           status: 'Success',
           message: 'Order placed successfully'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
 
   static userOrderHistory(request, response) {
@@ -72,13 +74,15 @@ class OrderController {
             message: 'User has no order history'
           });
         }
-        response.status(200).json({
+        return response.status(200).json({
           orders,
           message: 'Successful'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
   /**
      * @description Gets all the orders
@@ -101,13 +105,15 @@ class OrderController {
             message: 'No order yet'
           });
         }
-        response.status(200).json({
+        return response.status(200).json({
           orders,
           message: 'All orders was Successful'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
 
   /**
@@ -135,13 +141,15 @@ class OrderController {
             message: 'The id of the given order was not found'
           });
         }
-        response.status(200).json({
+        return response.status(200).json({
           order,
           message: 'Get a specific order was successful'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
   /**
    * @description Updates's the status of an order with the given id
@@ -183,13 +191,15 @@ class OrderController {
             message: 'The status with the given order id was not found'
           });
         }
-        response.status(200).json({
+        return response.status(200).json({
           orderStatus,
           message: 'Status updated successfully'
         });
-      }).catch(err => response.status(500).json({
-        message: err.message
-      }));
+      }).catch((err) => {
+        return response.status(500).json({
+          message: err.message
+        });
+      });
   }
 }
 

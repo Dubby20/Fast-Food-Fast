@@ -21,7 +21,7 @@ class verifyToken {
         return next();
       });
     } else {
-      response.status(401).json({
+      return response.status(401).json({
         message: 'Unauthorized'
       });
     }
