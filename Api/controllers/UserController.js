@@ -131,13 +131,13 @@ export default class UserController {
     } = request.body;
 
     if (!email) {
-      return response.status(400).json({
+      return response.status(204).json({
         status: 'Error',
         message: 'Email is required'
       });
     }
     if (!password) {
-      return response.status(400).json({
+      return response.status(204).json({
         status: 'Error',
         message: 'Password is required'
       });
@@ -146,7 +146,7 @@ export default class UserController {
       .then((data) => {
         const user = data.rows[0];
         if (!user) {
-          return response.status(400).json({
+          return response.status(422).json({
             status: 'Error',
             message: 'Invalid login details. Email or password is wrong'
           });
@@ -160,7 +160,7 @@ export default class UserController {
      * @returns {Boolean} return True or False
      */
         if (!bcrypt.compareSync(password, user.password)) {
-          return response.status(400).json({
+          return response.status(422).json({
             status: 'Error',
             message: 'Invalid login details. Email or password is wrong'
           });

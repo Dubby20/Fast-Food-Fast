@@ -1,6 +1,4 @@
 env:
-  global:
-    - CC_TEST_REPORTER_ID=dd8476ca37cd711ef9c8b40c5b7faa6d1ea1fcf61163af83a9259ceaa5ce77ac
 language: node_js
 node_js: 
   - stable
@@ -10,7 +8,7 @@ services :
 
 postgres:
   adapter: postgresql
-  database: DB_DATABASE_URL
+  database: DB_DATABASE
   username: postgres
 
 install:

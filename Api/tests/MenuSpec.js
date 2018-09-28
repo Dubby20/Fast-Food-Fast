@@ -36,7 +36,7 @@ describe('/POST menu', () => {
     chai.request(server)
       .post('/api/v1/menu')
       .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
+      // .set('Accept', 'application/json')
       .set('token', adminToken)
       .send(menu)
       .end((error, response) => {
@@ -57,7 +57,7 @@ describe('/POST menu', () => {
     chai.request(server)
       .post('/api/v1/menu')
       .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
+      // .set('Accept', 'application/json')
       .set('token', adminToken)
       .send(menu)
       .end((error, response) => {
@@ -78,7 +78,7 @@ describe('/POST menu', () => {
     chai.request(server)
       .post('/api/v1/menu')
       .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
+      // .set('Accept', 'application/json')
       .set('token', adminToken)
       .send(menu2)
       .end((error, response) => {
@@ -95,7 +95,7 @@ describe('/GET menu', () => {
     chai.request(server)
       .get('/api/v1/menu')
       .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
+      // .set('Accept', 'application/json')
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');

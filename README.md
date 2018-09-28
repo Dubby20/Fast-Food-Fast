@@ -87,7 +87,7 @@ List of endpoints exposed by the service
   * `status` The status of an order which can be `Processing`, `Cancelled`, or `Complete`
 
 ## Demo
-A fully functional demo of this project hosted on Heroku is available at [Limelight]()
+A fully functional demo of this project hosted on Heroku is available at [Limelight](https://limelight-fastfood.herokuapp.com/)
 
 ### Testing the application
 List of steps to run the service
