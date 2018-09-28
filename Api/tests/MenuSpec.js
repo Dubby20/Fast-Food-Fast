@@ -14,7 +14,8 @@ const user = {
   password: 'andela1',
   isAdmin: true
 };
-let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTE4LCJlbWFpbCI6ImRhbmFAeWFob28uY29tIiwiaWF0IjoxNTM4MDgwOTU5LCJleHAiOjE1MzgxNjczNTl9.MNw-1HMddC_oWf-fqXdhOWqkltPhtjMKNSav9LBh2rU';
+let adminToken;
+// = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTE4LCJlbWFpbCI6ImRhbmFAeWFob28uY29tIiwiaWF0IjoxNTM4MDgwOTU5LCJleHAiOjE1MzgxNjczNTl9.MNw-1HMddC_oWf-fqXdhOWqkltPhtjMKNSav9LBh2rU';
 describe('/POST menu', () => {
   before((done) => {
     chai.request(server)

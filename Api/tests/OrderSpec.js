@@ -19,8 +19,10 @@ const user = {
   password: 'password'
 };
 chai.use(chaiHttp);
-let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkdWJ5QHloYW9vLmNvbSIsImlzQWRtaW4iOm51bGwsImlhdCI6MTUzODA4MjE3NCwiZXhwIjoxNTM4MTY4NTc0fQ.AnzJWRrJVtCjEwcJnAqQ6cKYfEr9CaajnmI1Bbb2bHM';
-let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTE4LCJlbWFpbCI6ImRhbmFAeWFob28uY29tIiwiaWF0IjoxNTM4MDgwOTU5LCJleHAiOjE1MzgxNjczNTl9.MNw-1HMddC_oWf-fqXdhOWqkltPhtjMKNSav9LBh2rU';
+let userToken;
+//  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkdWJ5QHloYW9vLmNvbSIsImlzQWRtaW4iOm51bGwsImlhdCI6MTUzODA4MjE3NCwiZXhwIjoxNTM4MTY4NTc0fQ.AnzJWRrJVtCjEwcJnAqQ6cKYfEr9CaajnmI1Bbb2bHM';
+let adminToken;
+//  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTE4LCJlbWFpbCI6ImRhbmFAeWFob28uY29tIiwiaWF0IjoxNTM4MDgwOTU5LCJleHAiOjE1MzgxNjczNTl9.MNw-1HMddC_oWf-fqXdhOWqkltPhtjMKNSav9LBh2rU';
 
 const order = {
   phoneNumber: '08186765436',
@@ -36,6 +38,7 @@ describe('/POST orders', () => {
       .post('/api/v1/auth/login')
       .send(user)
       .end((error, response) => {
+        userToken = response.body.token;
         done();
       });
   });
