@@ -131,13 +131,13 @@ export default class UserController {
     } = request.body;
 
     if (!email) {
-      return response.status(204).json({
+      return response.status(400).json({
         status: 'Error',
         message: 'Email is required'
       });
     }
     if (!password) {
-      return response.status(204).json({
+      return response.status(400).json({
         status: 'Error',
         message: 'Password is required'
       });

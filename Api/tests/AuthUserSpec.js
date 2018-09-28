@@ -146,7 +146,7 @@ describe('User', () => {
         .set('Accept', 'application/json')
         .send(userLogin4)
         .end((error, response) => {
-          expect(response).to.status(204);
+          expect(response).to.status(400);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Email is required');
           done();
@@ -164,7 +164,7 @@ describe('User', () => {
         .set('Accept', 'application/json')
         .send(userLogin5)
         .end((error, response) => {
-          expect(response).to.status(204);
+          expect(response).to.status(400);
           expect(response.body).to.be.an('object');
           expect(response.body.message).to.equal('Password is required');
           done();
