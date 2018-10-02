@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Orders History</title>
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Leckerli+One|Lily+Script+One|Lobster|Lobster+Two|Pacifico|Playball"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/admin.css">
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <header class="main-header">
+      <nav id="primary-menu" class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class="logo">
+            <a href="index.html" class="brand-name">Limelight</a>
+          </div>
+          <div class="right-menu">
+            <ul class="menu-items menu-left menu-collapse">
+              <li class="menu-list">
+                <a href="#" class="menu-link btn">Log out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="dashboard-container">
+      <div class="dashboard">
+        <h1 class="">Hi, Jacinta</h1>
+        <div class="summary-div">
+          <h2 class="summary">Orders History</h2>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-border table-striped">
+          <thead>
+            <tr>
+              <th>S/No</th>
+              <th>Date</th>
+              <th>OrderID</th>
+              <th>Food Item</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th>Status</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td item-data="No">1</td>
+              <td item-data="Date">3/10/2018</td>
+              <td item-data="ID">23</td>
+              <td item-data="Item">Beef Pizza</td>
+              <td item-data="Quantity">1</td>
+              <td item-data="Price"><span>&#8358;</span>2000</td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
+
+
+            </tr>
+            <tr>
+              <td item-data="No">2</td>
+              <td item-data="Date">3/10/2018</td>
+              <td item-data="ID">22</td>
+              <td item-data="Item">Chicken Wings</td>
+              <td item-data="Quantity">2</td>
+              <td item-data="Price"><span>&#8358;</span>3000</td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
+            </tr>
+
+            <tr>
+              <td item-data="No">3</td>
+              <td item-data="Date">3/10/2018</td>
+              <td item-data="ID">23</td>
+              <td item-data="Item">Cheeseburger</td>
+              <td item-data="Quantity">2</td>
+              <td item-data="Price"><span>&#8358;</span>2000</td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
+            </tr>
+
+            <tr>
+              <td item-data="No">4</td>
+              <td item-data="Date">3/10/2018</td>
+              <td item-data="ID">24</td>
+              <td item-data="Item">Fried Chicken</td>
+              <td item-data="Quantity">1</td>
+              <td item-data="Price"><span>&#8358;</span>2000</td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
+            </tr>
+
+            <tr>
+              <td item-data="No">5</td>
+              <td item-data="Date">3/10/2018</td>
+              <td item-data="ID">25</td>
+              <td item-data="Item">Fried Rice</td>
+              <td item-data="Quantity">1</td>
+              <td item-data="Price"><span>&#8358;</span>1500</td>
+              <td item-data="Status">Delivered: <input type="checkbox" id="myCheck" onclick="myFunction()"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <footer>
+      <div class="footer-bottom">
+          <div class="footer-text">
+<p >Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
+          </div>
+    </div>
+  </footer>
+  </div>
+  <script src="./app.js"></script>
+</body>
+
+</html>
