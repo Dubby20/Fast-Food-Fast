@@ -8,6 +8,14 @@ import {
  */
 const orderValidator = new OrderValidator();
 class OrderController {
+  static itemsQuery(foodItems) {
+    const itemsQuery = [];
+    foodItems.forEach((item) => {
+      itemsQuery.push(`((select * from newOrder), ${item.foodId}, ${item.price}, ${item.quantity})`);
+    });
+    return itemsQuery.join(', ');
+  }
+
   /**
   * @description creates new order
 
@@ -20,56 +28,36 @@ class OrderController {
   * @returns {object} object
   */
 
-  // static placeOrder(request, response) {
-  //   const result = orderValidator.testOrders(request.body);
-  //   if (!result.passing) {
-  //     return response.status(400).json({
-  //       message: result.err
-  //     });
-  //   }
-  //   const {
-  //     phoneNumber,
-  //     address,
-  //     foodItems
-  //   } = request.body;
-  //   pool.query('INSERT INTO orders(user_id, phone_number, address) VALUES ($1, $2, $3)',
-  //       [request.decoded.id, phoneNumber, address])
-  //     .then((order) => {
-  //       pool.query('SELECT id FROM orders WHERE id = orders.id')
-  //         .then((orderId) => {
-  //           foodItems.forEach((item) => {
-  //             const foodId = item.foodId;
-  //             const quantity = item.quantity
-  //             pool.query('INSERT INTO orders (food_tray_id) VALUES($1)', [foodId, quantity])
-  //               .then((data) => {
-  //                 pool.query('SELECT id FROM food_menu WHERE id = food_menu.id')
-  //                   .then((orders) => {
-  //                     return response.status(201).json({
-  //                       status: 'Success',
-  //                       message: 'Order placed successfully'
-  //                     });
-  //                   }).catch((err) => {
-  //                     return response.status(500).json({
-  //                       message: err.message
-  //                     });
-  //                   });
-  //               }).catch((err) => {
-  //                 return response.status(500).json({
-  //                   message: err.message
-  //                 });
-  //               });
-  //           });
-  //         }).catch((err) => {
-  //           return response.status(500).json({
-  //             message: err.message
-  //           });
-  //         });
-  //     }).catch((err) => {
-  //       return response.status(500).json({
-  //         message: err.message
-  //       });
-  //     });
-  // }
+  static placeOrder(request, response) {
+    const result = orderValidator.testOrders(request.body);
+    if (!result.passing) {
+      return response.status(400).json({
+        message: result.err
+      });
+    }
+    const {
+      phoneNumber,
+      address,
+      foodItems
+    } = request.body;
+
+    const orderQuery = `WITH newOrder as(
+      insert into orders(user_id, address, phone_number) values(${request.user.id}, '${address}', '${phoneNumber}') returning id as order_id
+     )
+     insert into food_tray(order_id, food_id, price, quantity)
+     values ${OrderController.itemsQuery(foodItems)};`;
+    pool.query(orderQuery)
+      .then((data) => {
+        const orders = data.rows[0];
+        return response.status(201).json({
+          orders,
+          status: 'Success',
+          message: 'Order placed successfully'
+        });
+      }).catch(err => response.status(500).json({
+        message: err.stack
+      }));
+  }
 
   static userOrderHistory(request, response) {
     /**
@@ -101,11 +89,9 @@ class OrderController {
           orders,
           message: 'Successful'
         });
-      }).catch((err) => {
-        return response.status(500).json({
-          message: err.message
-        });
-      });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
   /**
      * @description Gets all the orders
@@ -132,11 +118,9 @@ class OrderController {
           orders,
           message: 'All orders was Successful'
         });
-      }).catch((err) => {
-        return response.status(500).json({
-          message: err.message
-        });
-      });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
 
   /**
@@ -168,11 +152,9 @@ class OrderController {
           order,
           message: 'Get a specific order was successful'
         });
-      }).catch((err) => {
-        return response.status(500).json({
-          message: err.message
-        });
-      });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
   /**
    * @description Updates's the status of an order with the given id
@@ -218,11 +200,9 @@ class OrderController {
           orderStatus,
           message: 'Status updated successfully'
         });
-      }).catch((err) => {
-        return response.status(500).json({
-          message: err.message
-        });
-      });
+      }).catch(err => response.status(500).json({
+        message: err.message
+      }));
   }
 }
 

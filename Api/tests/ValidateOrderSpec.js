@@ -57,17 +57,19 @@ describe('Validate  place order', () => {
   it('should validate the testForFoodItems function', (done) => {
     orderValidator.testForFoodItems([{
       foodId: 1,
-      quantity: 4
+      quantity: 2,
+      price: 700
     }]);
     expect(orderValidator.passing).to.equal(true);
     expect(orderValidator.errMessage).to.equal(undefined);
     orderValidator.testForFoodItems([{
-      fodId: '1',
-      quantity: '0'
+      foodId: '',
+      quantity: '0',
+      price: 'a'
     }]);
     expect(orderValidator.passing).to.equal(false);
     expect(orderValidator.errMessage).to.equal(
-      'Invalid values, FoodItems must contain foodId and quantity and both must be numbers'
+      'Invalid values, FoodItems must contain foodId, quantity and price, quantity must not be less than 1, price must not be less than 500'
     );
     done();
   });

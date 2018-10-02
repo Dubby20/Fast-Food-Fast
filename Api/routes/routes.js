@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post('/auth/signup', UserController.signup);
 router.post('/auth/login', UserController.login);
-// router.post('/orders', verifyToken.userAuthentication, OrderController.placeOrder);
+router.post('/orders', verifyToken.userAuthentication, OrderController.placeOrder);
 router.post('/menu', verifyToken.userAuthentication, verifyToken.adminAuthentication, MenuController.addMenu);
 router.get('/menu', MenuController.getMenu);
 router.get('/users/:id/orders', verifyToken.userAuthentication, OrderController.userOrderHistory);

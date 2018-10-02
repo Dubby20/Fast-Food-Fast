@@ -1,7 +1,7 @@
 const firstnameRegex = /^[A-Za-z]{3,20}$/;
 const lastnameRegex = /^[A-Za-z]{3,20}$/;
 const emailRegex = /\S+@\S+\.\S+/;
-const passwordRegex = /^[A-Za-z0-9]{6,15}$/;
+const passwordRegex = /^[A-Za-z0-9]{6,}$/;
 
 export class ValidateUserSignup {
   /**
@@ -83,7 +83,7 @@ export class ValidateUserSignup {
   testPassword(password) {
     if (!passwordRegex.test(password)) {
       this.passing = false;
-      this.errMessage = 'Password must be a minimum of 6 characters and a maximum of 15 characters';
+      this.errMessage = 'Password must be a minimum of 6 characters';
     }
   }
 
