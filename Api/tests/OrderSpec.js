@@ -27,7 +27,8 @@ const order = {
   address: 'Ikoyi',
   foodItems: [{
     foodId: 1,
-    quantity: 2
+    quantity: 2,
+    price: 700
   }]
 };
 describe('/POST orders', () => {
@@ -40,74 +41,74 @@ describe('/POST orders', () => {
         done();
       });
   });
-//   it('it should add a new order', (done) => {
-//     chai.request(server)
-//       .post('/api/v1/orders')
-//       .set('Content-Type', 'application/json')
-//       .set('Accept', 'application/json')
-//       .set('token', userToken)
-//       .send(order)
-//       .end((error, response) => {
-//         expect(response).to.have.status(201);
-//         expect(response.body).to.be.an('object');
-//         expect(response.body).to.have.property('message').eql('Order placed successfully');
-//         done();
-//       });
-//   });
+  it('it should add a new order', (done) => {
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userToken)
+      .send(order)
+      .end((error, response) => {
+        expect(response).to.have.status(201);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('Order placed successfully');
+        done();
+      });
+  });
 
-//   it('it should not place an empty order', (done) => {
-//     const invalidOrder = {
-//       phoneNumber: '',
-//       address: 'Ikoyi',
-//       foodItems: []
-//     };
-//     chai.request(server)
-//       .post('/api/v1/orders')
-//       .set('Content-Type', 'application/json')
-//       .set('Accept', 'application/json')
-//       .set('token', userToken)
-//       .send(invalidOrder)
-//       .end((error, response) => {
-//         expect(response).to.have.status(400);
-//         expect(response.body).to.be.an('object');
-//         expect(response.body).to.have.property('message').eql('Input fields must not be empty');
-//         done();
-//       });
-//   });
+  it('it should not place an empty order', (done) => {
+    const invalidOrder = {
+      phoneNumber: '',
+      address: 'Ikoyi',
+      foodItems: []
+    };
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userToken)
+      .send(invalidOrder)
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('Input fields must not be empty');
+        done();
+      });
+  });
 
-//   it('it should not add a new order if input is not valid', (done) => {
-//     const order2 = {
-//       phoneNumber: 1097765,
-//       address: '',
-//       foodItems: []
-//     };
-//     chai.request(server)
-//       .post('/api/v1/orders')
-//       .set('Content-Type', 'application/json')
-//       .set('Accept', 'application/json')
-//       .set('token', userToken)
-//       .send(order2)
-//       .end((error, response) => {
-//         expect(response).to.have.status(400);
-//         expect(response.body).to.be.an('object');
-//         done();
-//       });
-//   });
+  it('it should not add a new order if input is not valid', (done) => {
+    const order2 = {
+      phoneNumber: 1097765,
+      address: '',
+      foodItems: []
+    };
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('x-access-token', userToken)
+      .send(order2)
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body).to.be.an('object');
+        done();
+      });
+  });
 
-//   it('it should not place an order if the user is not authenticated', (done) => {
-//     chai.request(server)
-//       .post('/api/v1/orders')
-//       .set('Content-Type', 'application/json')
-//       .set('Accept', 'application/json')
-//       .set('x-access-token', '')
-//       .send(order)
-//       .end((error, response) => {
-//         expect(response).to.have.status(401);
-//         expect(response.body).to.be.an('object');
-//         expect(response.body).to.have.property('message').eql('Unauthorized');
-//         done();
-//       });
-//   });
+  it('it should not place an order if the user is not authenticated', (done) => {
+    chai.request(server)
+      .post('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .set('x-access-token', '')
+      .send(order)
+      .end((error, response) => {
+        expect(response).to.have.status(401);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('message').eql('Unauthorized');
+        done();
+      });
+  });
 
 describe('/GET orders', () => {
   it('it should get user order history', (done) => {
@@ -119,7 +120,7 @@ describe('/GET orders', () => {
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Successful');
-        // expect(response.body.orders).to.be.an('array');
+        expect(response.body.orders).to.be.an('array');
         expect(response.body).to.be.an('object');
         done();
       });

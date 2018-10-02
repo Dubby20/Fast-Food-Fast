@@ -46,9 +46,9 @@ export class OrderValidator {
 
   testForFoodItems(foodItems) {
     foodItems.forEach((item) => {
-      if (typeof item.foodId !== 'number' || typeof item.quantity !== 'number' || item.quantity < 1) {
+      if (typeof item.foodId !== 'number' || typeof item.quantity !== 'number' || typeof item.quantity < 1 || typeof item.price !== 'number') {
         this.passing = false;
-        this.errMessage = 'Invalid values, FoodItems must contain foodId and quantity and both must be numbers';
+        this.errMessage = 'Invalid values, FoodItems must contain foodId, quantity and price, quantity must not be less than 1, price must not be less than 500';
       }
     });
   }
@@ -79,7 +79,7 @@ export class OrderValidator {
     this.resetValid();
     this.testForPhoneNumber(orders.phoneNumber);
     this.testForAddress(orders.address);
-    // this.testForFoodItems(orders.foodItems);
+    this.testForFoodItems(orders.foodItems);
     this.testForEmptyStringInput(orders);
     const obj = {
       passing: this.passing,
