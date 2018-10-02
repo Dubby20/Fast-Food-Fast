@@ -85,17 +85,17 @@ export default class MenuController {
         });
       });
   }
-/**
-     * @description edit menu
-     *
-     * @static edit a menu
-     * @memberof MenuController
-     * @param {object} request The request.
-     * @param {object} response The response.
-     *@function getMenu
+  /**
+       * @description edit menu
+       *
+       * @static edit a menu
+       * @memberof MenuController
+       * @param {object} request The request.
+       * @param {object} response The response.
+       *@function getMenu
 
-     * @returns {object} response.
-     */
+       * @returns {object} response.
+       */
 
   static editMenu(request, response) {
     const results = validateMenu.testFoodMenu(request.body);
@@ -122,18 +122,48 @@ export default class MenuController {
             message: 'The meal with the given id does not exists'
           });
         }
-          pool.query(`UPDATE food_menu SET food_name = '${foodName}', food_image = '${foodImage}', description = '${description}', price = ${price} WHERE food_menu.id = $1 RETURNING *`, [request.params.id])
-            .then((data) => {
-              const editMeal = data.rows;
-              return response.status(200).json({
-                editMeal,
-                message: 'Meal has been edited successfully'
-              });
-            }).catch((error) => {
-              return response.status(500).json({
-                message: error.message
-              });
+        pool.query(`UPDATE food_menu SET food_name = '${foodName}', food_image = '${foodImage}', description = '${description}', price = ${price} WHERE food_menu.id = $1 RETURNING *`, [request.params.id])
+          .then((data) => {
+            const editMeal = data.rows;
+            return response.status(200).json({
+              editMeal,
+              message: 'Meal has been edited successfully'
             });
+          }).catch((error) => {
+            return response.status(500).json({
+              message: error.message
+            });
+          });
+      }).catch((error) => {
+        return response.status(500).json({
+          message: error.message
+        });
+      });
+  }
+
+  static deleteMenu(request, response) {
+    if (!Number(request.params.id)) {
+      return response.status(400).json({
+        message: 'The given menu id is not a number'
+      });
+    }
+    pool.query('SELECT  * FROM food_menu WHERE food_menu.id = $1', [request.params.id])
+      .then((mealId) => {
+        if (mealId.rowCount < 1) {
+          return response.status(404).json({
+            message: 'The meal with the given id does not exists'
+          });
+        }
+        pool.query('DELETE FROM food_menu WHERE food_menu.id = $1', [request.params.id])
+          .then((data) => {
+            return response.status(200).json({
+              message: 'Meal has been deleted successfully'
+            });
+          }).catch((error) => {
+            return response.status(500).json({
+              message: error.message
+            });
+          });
       }).catch((error) => {
         return response.status(500).json({
           message: error.message

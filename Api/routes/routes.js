@@ -17,5 +17,7 @@ router.get('/orders', verifyToken.userAuthentication, verifyToken.adminAuthentic
 router.get('/orders/:id', verifyToken.userAuthentication, verifyToken.adminAuthentication, OrderController.orderId);
 router.put('/orders/:id', verifyToken.userAuthentication, verifyToken.adminAuthentication, OrderController.updateStatus);
 router.put('/menu/:id', verifyToken.userAuthentication, verifyToken.adminAuthentication, MenuController.editMenu);
+router.delete('/menu/:id', verifyToken.userAuthentication, verifyToken.adminAuthentication, MenuController.deleteMenu);
+
 
 export default router;
