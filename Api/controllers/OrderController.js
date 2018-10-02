@@ -20,46 +20,69 @@ class OrderController {
   * @returns {object} object
   */
 
-  static placeOrder(request, response) {
-    const result = orderValidator.testOrders(request.body);
-    if (!result.passing) {
-      return response.status(400).json({
-        message: result.err
-      });
-    }
-    const {
-      phoneNumber,
-      address,
-      foodItems
-    } = request.body;
-    pool.query('INSERT INTO orders(user_id, phone_number, address, food_items) VALUES ($1, $2, $3, $4)',
-        [request.decoded.id, phoneNumber, address, JSON.stringify(foodItems)])
-      .then((data) => {
-        const order = data.rows[0];
-        return response.status(201).json({
-          order,
-          status: 'Success',
-          message: 'Order placed successfully'
-        });
-      }).catch((err) => {
-        return response.status(500).json({
-          message: err.message
-        });
-      });
-  }
+  // static placeOrder(request, response) {
+  //   const result = orderValidator.testOrders(request.body);
+  //   if (!result.passing) {
+  //     return response.status(400).json({
+  //       message: result.err
+  //     });
+  //   }
+  //   const {
+  //     phoneNumber,
+  //     address,
+  //     foodItems
+  //   } = request.body;
+  //   pool.query('INSERT INTO orders(user_id, phone_number, address) VALUES ($1, $2, $3)',
+  //       [request.decoded.id, phoneNumber, address])
+  //     .then((order) => {
+  //       pool.query('SELECT id FROM orders WHERE id = orders.id')
+  //         .then((orderId) => {
+  //           foodItems.forEach((item) => {
+  //             const foodId = item.foodId;
+  //             const quantity = item.quantity
+  //             pool.query('INSERT INTO orders (food_tray_id) VALUES($1)', [foodId, quantity])
+  //               .then((data) => {
+  //                 pool.query('SELECT id FROM food_menu WHERE id = food_menu.id')
+  //                   .then((orders) => {
+  //                     return response.status(201).json({
+  //                       status: 'Success',
+  //                       message: 'Order placed successfully'
+  //                     });
+  //                   }).catch((err) => {
+  //                     return response.status(500).json({
+  //                       message: err.message
+  //                     });
+  //                   });
+  //               }).catch((err) => {
+  //                 return response.status(500).json({
+  //                   message: err.message
+  //                 });
+  //               });
+  //           });
+  //         }).catch((err) => {
+  //           return response.status(500).json({
+  //             message: err.message
+  //           });
+  //         });
+  //     }).catch((err) => {
+  //       return response.status(500).json({
+  //         message: err.message
+  //       });
+  //     });
+  // }
 
   static userOrderHistory(request, response) {
     /**
-  * @description gets a user order history
+    * @description gets a user order history
 
-  * @static userOrderHistory
-  * @memberof OrderController
-  * @param {object} request object
-  * @param {object} response object
-  *@function userOrderHistory
+    * @static userOrderHistory
+    * @memberof OrderController
+    * @param {object} request object
+    * @param {object} response object
+    *@function userOrderHistory
 
-  * @returns {object} object
-  */
+    * @returns {object} object
+    */
     if (!Number(request.params.id)) {
       return response.status(400).json({
         message: 'The given user id is not a number'

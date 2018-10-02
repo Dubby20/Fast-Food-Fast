@@ -79,7 +79,7 @@ export class OrderValidator {
     this.resetValid();
     this.testForPhoneNumber(orders.phoneNumber);
     this.testForAddress(orders.address);
-    this.testForFoodItems(orders.foodItems);
+    // this.testForFoodItems(orders.foodItems);
     this.testForEmptyStringInput(orders);
     const obj = {
       passing: this.passing,

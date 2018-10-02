@@ -83,9 +83,9 @@ export default class UserController {
               const token = jwt.sign({
                 id: user.id,
                 email: user.email,
-                isAdmin: user.isAdmin
+                isAdmin: user.is_admin
               }, process.env.SECRET, {
-                expiresIn: '24h'
+                expiresIn: '48h'
               });
              return response.status(201).json({
                 token,
@@ -179,7 +179,7 @@ export default class UserController {
             isAdmin: user.is_admin
           },
           process.env.SECRET, {
-            expiresIn: '24h'
+            expiresIn: '48h'
           });
         return response.status(200).json({
           token,

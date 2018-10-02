@@ -418,7 +418,8 @@
                   "type": "date",
                   "format": "date-time"
                 }
-              },
+              }
+            },
               "foodItems": {
                 "type": "array",
                 "required": [
@@ -427,7 +428,9 @@
                   "price"
                 ],
                 "items": {
-                  "type": "object",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
                   "properties": {
                     "id": {
                       "type": "integer"
