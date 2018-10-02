@@ -223,7 +223,7 @@ describe('/DELETE menu', () => {
   });
   it('it should delete a menu', (done) => {
     chai.request(server)
-      .delete('/api/v1/menu/75')
+      .delete('/api/v1/menu/100')
       .set('Content-Type', 'application/json')
       .set('x-access-token', adminToken)
       .end((error, response) => {
