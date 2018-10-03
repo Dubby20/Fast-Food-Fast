@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,69 +11,72 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body>
-    <header class="main-header">
-        <nav id="primary-menu" class="navbar navbar-fixed-top">
-          <div class="container">
-            <div class="logo">
-              <a href="index.html" class="brand-name">Limelight</a>
-            </div>
-            <div class="right-menu">
-              <ul class="menu-items menu-left menu-collapse">
-                <li class="menu-list ">
-                  <a href="login.html" class="menu-link btn">Login</a>
-                </li>
-                <li class="menu-list">
-                  <a href="signUp.html" class="menu-link btn">Sign Up</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-  <div class="page-container">
-<div class="signUp-login">
-  <h5>Login</h5>
-  <p>Login to start ordering</p>
-  <form action="" method="POST">
-    <div class="form-group">
-      <i class="fas fa-envelope fa-icon"></i>
-      <input type="email" name="email" placeholder="Email" id="input-email" class="form-control">
-    </div>
-    
-    <div class="form-group">
-      <i class="fas fa-unlock-alt fa-icon"></i>
-      <input type="password" name="password" placeholder="Password" id="input-password" class="form-control">
-    </div>
 
-    <div class="form-group">
-      <div class="form-link">
-        <label for=""><input type="checkbox" class="inline-checkbox"> Remember Me </label>
-        <a href="#" class="float-right login">Forgot Password?</a>
+<body>
+  <header class="main-header">
+    <nav id="primary-menu" class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html" class="brand-name">Limelight</a>
+        </div>
+        <div class="right-menu">
+          <ul class="menu-items menu-left menu-collapse">
+            <li class="menu-list ">
+              <a href="login.html" class="menu-link btn">Login</a>
+            </li>
+            <li class="menu-list">
+              <a href="signUp.html" class="menu-link btn">Sign Up</a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </nav>
+  </header>
+  <div class="page-container">
+    <div class="signUp-login">
+      <h5>Login</h5>
+      <p>Login to start ordering</p>
+      <form action="" method="POST">
+        <div class="msg-div"></div>
+        <div class="form-group">
+          <i class="fas fa-envelope fa-icon"></i>
+          <input type="email" name="email" placeholder="Email" required id="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-unlock-alt fa-icon"></i>
+          <input type="password" name="password" placeholder="Password" required id="password" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <div class="form-link">
+            <label for=""><input type="checkbox" class="inline-checkbox"> Remember Me </label>
+            <a href="#" class="float-right login">Forgot Password?</a>
+          </div>
+        </div>
+        <div class="form-group login-div">
+          <input type="submit" value="LOGIN" class="login-btn">
+        </div>
+        <div class="loginLoader loader">
+          <img src="./assets/images/6 (1).gif" alt="spinner">
+        </div>
+      </form>
     </div>
-    <div class="form-group login-div">
-      <input type="submit" value="LOGIN" class="login-btn">
-    </div>
-    <div class="loginLoader loader">
-        <img src="./assets/images/6 (1).gif" alt="spinner" >
-      </div>
-  </form>
-</div>
-  <div class="account">
-    <p>Don't have an account yet?
+    <div class="account">
+      <p>Don't have an account yet?
         <a href="signUp.html"> Sign Up</a>
-    </p>
-</div>
+      </p>
+    </div>
   </div>
 
   <footer>
-      <div class="footer-bottom">
-          <div class="footer-text">
-<p >Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
-          </div>
+    <div class="footer-bottom">
+      <div class="footer-text">
+        <p>Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
-  <script src="js/signUpLogin.js" type="application/javascript"></script>
+  <script src="js/login.js" type="application/javascript"></script>
 </body>
+
 </html>

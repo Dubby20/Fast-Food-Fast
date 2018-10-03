@@ -5,7 +5,6 @@
   const password = document.getElementById('password');
   const signUpBtn = document.querySelector('.signUp-btn');
   const signUpLoader = document.querySelector('.signUpLoader');
-  const loginLoader = document.querySelector('.loginLoader');
 
   const validatePassword = (password, confirmPassword) => {
     if (password === confirmPassword) {
@@ -70,15 +69,5 @@
       signUpLoader.style.display = 'none';
     }
   };
+
   signUpBtn.addEventListener('click', newUser);
-
-  const loginUser = (event) => {
-    event.preventDefault();
-    const info = {
-      email: email.value,
-      password: password.value
-    };
-    const msgDiv = document.querySelector('.msg-div');
-    loginLoader.style.display = 'block';
-
-  };
