@@ -71,7 +71,7 @@ describe('Validate  users signup', () => {
     expect(validateSignup.errMessage).to.equal(undefined);
     validateSignup.testPassword('pass');
     expect(validateSignup.passing).to.equal(false);
-    expect(validateSignup.errMessage).to.equal('Password must be a minimum of 6 characters');
+    expect(validateSignup.errMessage).to.equal('Password must be a minimum of 6 alphanumeric characters');
     done();
   });
 

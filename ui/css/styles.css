@@ -943,3 +943,9 @@ label {
     opacity: 1;
   }
 }
+
+.loader {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}

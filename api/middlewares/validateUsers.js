@@ -83,7 +83,7 @@ export class ValidateUserSignup {
   testPassword(password) {
     if (!passwordRegex.test(password)) {
       this.passing = false;
-      this.errMessage = 'Password must be a minimum of 6 characters';
+      this.errMessage = 'Password must be a minimum of 6 alphanumeric characters';
     }
   }
 
