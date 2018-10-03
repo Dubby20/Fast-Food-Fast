@@ -35,33 +35,30 @@
   <h5>Register</h5>
   <p>Sign up to start ordering</p>
   <form action="" method="POST">
+    <div class="msg-div"></div>
     <div class="form-group">
       <i class="fas fa-user fa-icon"></i>
-      <input type="text" name="firstname" placeholder="Firstname" id="input-firstname" class="form-control">
+      <input type="text" name="firstname" placeholder="Firstname" required minlength="3" id="firstname" class="form-control">
     </div>
     <div class="form-group">
       <i class="fas fa-user fa-icon"></i>
-      <input type="text" name="lastname" placeholder="Lastname" id="input-lasttname" class="form-control">
+      <input type="text" name="lastname" placeholder="Lastname" required minlength="3" id="lastname" class="form-control">
     </div>
     <div class="form-group">
       <i class="fas fa-envelope fa-icon"></i>
-      <input type="email" name="email" placeholder="Email" id="input-email" class="form-control">
+      <input type="email" name="email" placeholder="Email" required id="email" class="form-control">
     </div>
     <div class="form-group">
       <i class="fas fa-phone fa-icon"></i>
-      <input type="tel" name="phoneNumber" placeholder="Phone Number" id="input-phoneNumber" class="form-control">
+      <input type="tel" name="phoneNumber" placeholder="Phone Number" required id="phoneNumber" class="form-control">
     </div>
     <div class="form-group">
       <i class="fas fa-unlock-alt fa-icon"></i>
-      <input type="password" name="password" placeholder="Password" id="input-password" class="form-control">
-    </div>
-    <div class="form-group">
-      <i class="fas fa-unlock-alt fa-icon"></i>
-      <input type="password" name="confirmPassword" placeholder="Confrim Password" id="input-confirmPassword" class="form-control">
+      <input type="password" name="password" placeholder="Password" required minlength="6" id="password" class="form-control">
     </div>
     <div class="form-group">
       <div class="form-link">
-        <label for=""><input type="checkbox" class="inline-checkbox"> By signing up I agree with 
+        <label for=""><input type="checkbox" required class="inline-checkbox"> By signing up I agree with 
           <a href="#">Terms & Conditions.</a></label>
       </div>
     </div>
@@ -75,6 +72,7 @@
         <a href="login.html"> Login.</a>
     </p>
 </div>
+<!-- <div id="modalPage" class="modal"></div> -->
   </div>
 
   <footer>
@@ -84,5 +82,6 @@
           </div>
     </div>
   </footer>
+  <script src="js/signUp.js" type="application/javascript"></script>
 </body>
 </html>

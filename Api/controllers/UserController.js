@@ -28,6 +28,7 @@ export default class UserController {
     const results = validateSignup.testUsers(request.body);
     if (!results.passing) {
       return response.status(400).json({
+        status: 'Error',
         message: results.err
       });
     }
