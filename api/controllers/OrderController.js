@@ -32,6 +32,7 @@ class OrderController {
     const result = orderValidator.testOrders(request.body);
     if (!result.passing) {
       return response.status(400).json({
+        status: 'Error',
         message: result.err
       });
     }
