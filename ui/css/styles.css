@@ -313,7 +313,7 @@ a:active {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  background: url(../images/background-image.jpg);
+  background: url(../assets/images/background-image.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -517,6 +517,8 @@ footer {
   width: 100%;
   padding: 0px 15px;
   margin: 0 16px;
+  text-align: center;
+  
   
 }
 
@@ -577,6 +579,7 @@ footer .inner .contact li i {
 footer .footer-bottom {
   background: #ff5722;
   padding: 10px 0;
+	bottom: 0;
 
 }
 
@@ -939,4 +942,10 @@ label {
   to {
     opacity: 1;
   }
+}
+
+.loader {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
 }
