@@ -7,7 +7,6 @@ window.addEventListener('load', (event) => {
   const menuContent = document.querySelector('.menu-content');
   loader.style.display = 'block';
 
-
   const menu = (items) => {
     items.forEach((item) => {
       const eachMenu = `<li class="product-details">

@@ -17,7 +17,7 @@ const user = {
 
 const menu = {
   foodName: 'Fried Rice',
-  foodImage: 'httpsampbusi.jpg',
+  foodImage: 'https://image.freepik.com/free-photo/fried-rice-with-crab_1339-15062.jpg',
   description: 'lorem',
   price: 1000
 };
