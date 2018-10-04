@@ -14,6 +14,7 @@ class verifyToken {
     const token = request.header('x-access-token');
     if (!token) {
       return response.status(401).json({
+        status: 'Error',
         message: 'Unauthorized'
       });
     }
@@ -23,6 +24,7 @@ class verifyToken {
       next();
     } catch (err) {
       return response.status(403).json({
+        status: 'Error',
         message: 'Access denied'
       });
     }
@@ -39,6 +41,7 @@ class verifyToken {
   static adminAuthentication(request, response, next) {
     if (!request.user.isAdmin) {
       return response.status(403).json({
+        status: 'Error',
         message: 'Access denied'
       });
     }

@@ -90,6 +90,14 @@ List of endpoints exposed by the service
 * PUT `/api/v1/orders/orderId` An authenticated Admin can use this route to update the status of an order. The following field is required:
   * `status` The status of an order which can be `Processing`, `Cancelled`, or `Complete`
 
+* PUT `/api/v1/menu/menuId` An authenticated Admin can use this route to edit a menu. The following field is required:
+  * `foodName` The name of the food
+  * `price` The price the food is sold for
+  * `foodImage` The image of the food
+  * `description`  The description of the food
+
+* DELETE `/ap/v1/menu/menuId` An authenticated Admin can use this route to delete a specific menu
+
 ## Demo
 A fully functional demo of this project hosted on Heroku is available at [Limelight](https://limelight-fastfood.herokuapp.com/)
 

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import swaggerUi from 'swagger-ui-express';
@@ -18,13 +19,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(express.static(path.join(__dirname, '../ui')));
 app.get('/', (request, response) => response.json({
   message: 'Welcome to Limelight Fast Food'
 }));
-app.use('/public', express.static('UI'));
+
 
 app.use('/api/v1', router);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.listen(port, () => {

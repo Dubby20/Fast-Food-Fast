@@ -723,6 +723,19 @@ label {
   border: 1px solid #ff5722;
 }
 
+.adminLogin-Btn {
+  background: #ff5722;
+  border-color: #ff5722;
+  padding: .375rem 1.2rem;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 4px;
+  line-height: 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 1px solid #ff5722;
+}
+
 .signUp-div {
   text-align: center;
 }
