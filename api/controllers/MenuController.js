@@ -102,7 +102,8 @@ export default class MenuController {
     const results = validateMenu.testFoodMenu(request.body);
     if (!results.passing) {
       return response.status(400).json({
-        message: results.error
+        status: 'Error',
+        message: results.err
       });
     }
     const {

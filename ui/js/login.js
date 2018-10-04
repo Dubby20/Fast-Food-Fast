@@ -1,7 +1,6 @@
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const loginBtn = document.querySelector('.login-btn');
-
 const loginLoader = document.querySelector('.loginLoader');
 
 const loginUrl = 'https://limelight-fastfood.herokuapp.com/api/v1/auth/login';
