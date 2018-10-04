@@ -1,6 +1,6 @@
 const foodNameRegex = /^[A-Za-z '.-]*$/;
-const foodImageRegex = /^[A-Za-z]{1,35}.(jpg|jpeg|png)$/;
-const descriptionRegex = /^[A-Za-z]{3,50}$/;
+const foodImageRegex = /.(jpg|jpeg|png)$/;
+const descriptionRegex = /^[A-Za-z ']{3,200}$/;
 
 export class MenuValidator {
   /**
@@ -25,7 +25,7 @@ export class MenuValidator {
   testFoodName(foodName) {
     if (!foodNameRegex.test(foodName)) {
       this.passing = false;
-      this.errMessage = 'FoodName must contain between 3 and 20 characters only';
+      this.errMessage = 'FoodName must be characters';
     }
   }
 
@@ -50,7 +50,7 @@ export class MenuValidator {
   testDescription(description) {
     if (!descriptionRegex.test(description)) {
       this.passing = false;
-      this.errMessage = 'Description must contain between 3 and 50 characters only';
+      this.errMessage = 'Description must contain between 3 and 200 characters only';
     }
   }
 

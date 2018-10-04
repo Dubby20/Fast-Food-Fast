@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+html,
+body {
+  height: 100vh;
+}
+
 body {
   font-size: 14px;
   font-weight: 400;
@@ -199,7 +204,7 @@ body {
 }
 
 @media (max-width: 568px) {
-  .signUp-login{
+  .signUp-login {
     margin: 180px 0;
   }
 }
@@ -212,9 +217,16 @@ body {
 
 .page-wrapper {
   position: relative;
-  margin: 0 auto;
   width: 100%;
   min-width: 300px;
+  margin-bottom: 80px;
+}
+
+.page-container {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  margin: 140px auto;
 }
 
 .main-header {
@@ -282,7 +294,11 @@ a:hover {
 }
 
 a:active {
-  color: #ffffff;
+  color: #ff5722;
+}
+
+.active {
+  background-color: #ff5722 !important;
 }
 
 .right-menu {
@@ -305,9 +321,6 @@ a:active {
   font-weight: 800;
   color: #fff;
 }
-
-/* .menu-items > li > a {
-} */
 
 .background {
   position: relative;
@@ -372,7 +385,6 @@ a:active {
   vertical-align: middle;
   padding: .375rem .75rem;
   margin-top: 10px;
-  /* line-height: 1.5; */
   border-radius: 4px;
   background: none;
   cursor: pointer;
@@ -413,7 +425,6 @@ a:active {
 
 .headline2 {
   font-family: 'Lobster', cursive;
-  /* font-family: 'Playball', cursive; */
   font-size: 1rem;
   color: #ffffff;
 }
@@ -468,23 +479,6 @@ a:active {
   padding: 4px;
 }
 
-/* .card-overlay {
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	align-items: center;
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 2;
-	transform: scale(0);
-	background: rgba(0, 0, 0, 0.5);
-	border-radius: 4px;
-	transition: all 1s ease;
-} */
-
 .img-fluid {
   width: 100%;
   height: auto;
@@ -506,7 +500,6 @@ img {
 
 footer {
   background: #f6f6f6;
-  /* background: #e67e22; */
 }
 
 .fab {
@@ -518,8 +511,6 @@ footer {
   padding: 0px 15px;
   margin: 0 16px;
   text-align: center;
-  
-  
 }
 
 footer .inner {
@@ -579,20 +570,21 @@ footer .inner .contact li i {
 footer .footer-bottom {
   background: #ff5722;
   padding: 10px 0;
-	bottom: 0;
-
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
-/* .social-icons{
-  position: relative;
+.footer-fixed {
+  background: #ff5722;
+  bottom: 0;
+  position: fixed;
   width: 100%;
-  min-height: 1px;
-  padding: 0 15px;
-} 
-
-.social-icons {
-  text-align: right !important;
-} */
+  z-index: 10;
+}
 
 footer .footer-row .social {
   margin: 22px 0px 0px;
@@ -604,7 +596,6 @@ footer .footer-row .social {
 }
 
 footer .footer-row .social li {
-  /* line-height: 14px; */
   float: left;
   margin: 0px;
 }
@@ -617,32 +608,18 @@ footer .footer-row .social li {
   margin-right: 0.5rem;
 }
 
-/* footer .footer-row  {
-  margin: 16px 0px 0px;
-} */
-
 footer .footer-row .social li a {
   color: #fff;
   display: block;
   text-align: center;
-  /* padding: 14px; */
-  /* width: 35px; */
 }
 
 .footer-text p {
   margin: 16px 0px 0px;
   color: #fff;
   font-size: 16px;
-  padding: 6px;  
+  padding: 6px;
   text-align: center;
-}
-
-.page-container {
-  position: relative;
-  width: 50%;
-  min-height: 1px;
-  margin: 140px auto;
-
 }
 
 .signUp-login {
@@ -699,7 +676,6 @@ footer .footer-row .social li a {
   width: 100%;
   padding: .375rem .75rem;
   font-size: .95rem;
-  /* line-height: 1.5; */
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;

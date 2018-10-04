@@ -30,10 +30,7 @@
                 <a href="ordersList.html" class="menu-link btn">Manage Orders</a>
               </li>
               <li class="menu-list">
-                  <a href="adminLogin.html" class="menu-link btn">Login</a>
-                </li>
-              <li class="menu-list">
-                <a href="#" class="menu-link btn">Log out</a>
+                <a href="#" class="menu-link btn logOut">Log out</a>
               </li>
             </ul>
           </div>
@@ -41,134 +38,133 @@
       </nav>
     </header>
 
-    <div class="dashboard-container">
-      <div class="dashboard">
-        <h1 class="">Hi, Admin</h1>
-        <div class="row align-btn">
-          <button class="btn order-button modalBtn"><i class="fa fa-plus"></i> Add Food Item</button>
+    <div class="dashboard">
+      <h1 class="">Hi, Admin</h1>
+      <div class="row align-btn">
+        <button class="btn order-button modalBtn"><i class="fa fa-plus"></i> Add Food Item</button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-border table-striped">
+        <thead>
+          <tr>
+            <th>S/No</th>
+            <th>Date</th>
+            <th>Food Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td item-data="No">1</td>
+            <td item-data="Date">3/10/2018</td>
+            <td item-data="Item">Beef Pizza</td>
+            <td item-data="Image">
+              <img src="../assets/images/pizza-beef-pizza.jpg" alt="" class="img-style" height="70" width="70">
+            </td>
+            <td item-data="Item"><span>&#8358;</span>2000</td>
+            <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+          </tr>
+          <tr>
+            <td item-data="No">2</td>
+            <td item-data="Date">3/10/2018</td>
+            <td item-data="Item">Chicken Wings</td>
+            <td item-data="Image">
+              <img src="../assets/images/chicken-wings-fried.jpg" alt="" class="img-style" height="70" width="70">
+            </td>
+            <td item-data="Item"><span>&#8358;</span>1500</td>
+            <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+          </tr>
+
+          <tr>
+            <td item-data="No">3</td>
+            <td item-data="Date">3/10/2018</td>
+            <td item-data="Item">Cheeseburger</td>
+            <td item-data="Image">
+              <img src="../assets/images/cheeseburger.jpg" alt="" class="img-style" height="70" width="70">
+            </td>
+            <td item-data="Item"><span>&#8358;</span>1000</td>
+            <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+          </tr>
+
+          <tr>
+            <td item-data="No">4</td>
+            <td item-data="Date">3/10/2018</td>
+            <td item-data="Item">Fried Chicken with Vegetables and Dipping Sauce</td>
+            <td item-data="Image">
+              <img src="../assets/images/fried-chicken-with-vegetables-and-dipping-sauce.jpg" alt="" class="img-style"
+                height="70" width="70">
+            </td>
+            <td item-data="Item"><span>&#8358;</span>3000</td>
+            <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+          </tr>
+
+          <tr>
+            <td item-data="No">5</td>
+            <td item-data="Date">3/10/2018</td>
+            <td item-data="Item">Fried Chicken</td>
+            <td item-data="Image">
+              <img src="../assets/images/fried-chicken.jpg" alt="" class="img-style" height="70" width="70">
+            </td>
+            <td item-data="Item"><span>&#8358;</span>1000</td>
+            <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <div class="footer-bottom">
+        <div class="footer-text">
+          <p>Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modalPage" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close-btn">x</span>
+          <h2>Add New Food Item</h2>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+            <div class="form-group">
+              <label for="productName">Food Name:</label>
+              <input type="text" class="form-control" placeholder="Food Name">
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" placeholder="Description" rows="5" name=description></textarea>
+            </div>
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input type="number" class="form-control" placeholder="Price">
+            </div>
+            <div class="form-group">
+              <label for="image">Image (Max 1MB)</label>
+              <input type="file" accept=".png, .jpg, .jpeg" id="input-quantity" placeholder="Food Image" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn order-button">Create New Item</button>
         </div>
       </div>
 
-      <div class="table-responsive">
-        <table class="table table-border table-striped">
-          <thead>
-            <tr>
-              <th>S/No</th>
-              <th>Date</th>
-              <th>Food Name</th>
-              <th>Image</th>
-              <th>Price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td item-data="No">1</td>
-              <td item-data="Date">3/10/2018</td>
-              <td item-data="Item">Beef Pizza</td>
-              <td item-data="Image">
-                <img src="../assets/images/pizza-beef-pizza.jpg" alt="" class="img-style" height="70" width="70">
-              </td>
-              <td item-data="Item"><span>&#8358;</span>2000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
-                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
-            </tr>
-            <tr>
-              <td item-data="No">2</td>
-              <td item-data="Date">3/10/2018</td>
-              <td item-data="Item">Chicken Wings</td>
-              <td item-data="Image">
-                <img src="../assets/images/chicken-wings-fried.jpg" alt="" class="img-style" height="70" width="70">
-              </td>
-              <td item-data="Item"><span>&#8358;</span>1500</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
-                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
-            </tr>
-
-            <tr>
-              <td item-data="No">3</td>
-              <td item-data="Date">3/10/2018</td>
-              <td item-data="Item">Cheeseburger</td>
-              <td item-data="Image">
-                <img src="../assets/images/cheeseburger.jpg" alt="" class="img-style" height="70" width="70">
-              </td>
-              <td item-data="Item"><span>&#8358;</span>1000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
-                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
-            </tr>
-
-            <tr>
-              <td item-data="No">4</td>
-              <td item-data="Date">3/10/2018</td>
-              <td item-data="Item">Fried Chicken with Vegetables and Dipping Sauce</td>
-              <td item-data="Image">
-                <img src="../assets/images/fried-chicken-with-vegetables-and-dipping-sauce.jpg" alt="" class="img-style"
-                  height="70" width="70">
-              </td>
-              <td item-data="Item"><span>&#8358;</span>3000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
-                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
-            </tr>
-
-            <tr>
-              <td item-data="No">5</td>
-              <td item-data="Date">3/10/2018</td>
-              <td item-data="Item">Fried Chicken</td>
-              <td item-data="Image">
-                <img src="../assets/images/fried-chicken.jpg" alt="" class="img-style" height="70" width="70">
-              </td>
-              <td item-data="Item"><span>&#8358;</span>1000</td>
-              <td item-data="Action"><button class="btn btn-edit"><i class="fa fa-edit"></i> Edit</button>
-                <button class="btn btn-danger"><i class="fa fa-times"></i> Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-  </div>
-  </div>
-
-  <footer>
-      <div class="footer-bottom">
-          <div class="footer-text">
-<p >Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
-          </div>
-    </div>
-  </footer>
-  <div id="modalPage" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close-btn">x</span>
-        <h2>Add New Food Item</h2>
-      </div>
-      <div class="modal-body">
-        <form action="" method="POST">
-          <div class="form-group">
-            <label for="productName">Food Name:</label>
-            <input type="text" class="form-control" placeholder="Food Name">
-          </div>
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" placeholder="Description" rows="5" name=description></textarea>
-          </div>
-          <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" class="form-control" placeholder="Price">
-          </div>
-          <div class="form-group">
-            <label for="image">Image (Max 1MB)</label>
-            <input type="file" accept=".png, .jpg, .jpeg" id="input-quantity" placeholder="Food Image" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn order-button">Create New Item</button>
-      </div>
-    </div>
-
-  </div>
   </div>
   <script src="../js/app.js"></script>
+  <script src="../js/logOut.js"></script>
+
 </body>
 
 </html>

@@ -1,9 +1,11 @@
+const loader = document.querySelector('.loader');
+
 const getMenuUrl = 'https://limelight-fastfood.herokuapp.com/api/v1/menu';
 
 window.addEventListener('load', (event) => {
   event.preventDefault();
   const menuContent = document.querySelector('.menu-content');
-
+  loader.style.display = 'block';
 
   const menu = (items) => {
     items.forEach((item) => {
@@ -48,6 +50,7 @@ window.addEventListener('load', (event) => {
     .then(response => response.json())
     .then((data) => {
       const menuList = data.menu;
+      loader.style.display = 'none';
       menu(menuList);
     }).catch((error) => {
       throw error;

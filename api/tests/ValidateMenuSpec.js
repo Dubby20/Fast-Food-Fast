@@ -41,7 +41,7 @@ describe('Validate  add menu', () => {
     expect(menuValidator.errMessage).to.equal(undefined);
     menuValidator.testFoodName('Fried0f');
     expect(menuValidator.passing).to.equal(false);
-    expect(menuValidator.errMessage).to.equal('FoodName must contain between 3 and 20 characters only');
+    expect(menuValidator.errMessage).to.equal('FoodName must be characters');
     done();
   });
 
@@ -71,7 +71,7 @@ describe('Validate  add menu', () => {
     expect(menuValidator.errMessage).to.equal(undefined);
     menuValidator.testDescription('lore67');
     expect(menuValidator.passing).to.equal(false);
-    expect(menuValidator.errMessage).to.equal('Description must contain between 3 and 50 characters only');
+    expect(menuValidator.errMessage).to.equal('Description must contain between 3 and 200 characters only');
     done();
   });
 
