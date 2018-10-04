@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>All Food Menus</title>
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Leckerli+One|Lily+Script+One|Lobster|Lobster+Two|Pacifico|Playball"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/admin.css">
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <header class="main-header">
+      <nav id="primary-menu" class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class="logo">
+            <a href="./index.html" class="brand-name">Limelight</a>
+          </div>
+          <div class="right-menu">
+            <ul class="menu-items menu-left menu-collapse">
+              <li class="menu-list">
+                <a href="foodMenus.html" class="menu-link btn active">Food Menus</a>
+              </li>
+              <li class="menu-list">
+                <a href="ordersHistory.html" class="menu-link btn">Orders History</a>
+              </li>
+              <li class="menu-list">
+                <a href="#" class="menu-link btn">Log out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="food-menu">
+      <h2 class="menu-title">Food Menus</h2>
+      <div class="loginLoader loader">
+        <img src="./assets/images/6 (1).gif" alt="spinner">
+      </div>
+      <ul class="menu-content menu-layout menu-column"></ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-fixed">
+      <div class="footer-text">
+        <p>Copyright &copy Limelight Food Delivery App 2018. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="./js/getMenu.js"></script>
+</body>
+
+</html>
