@@ -39,7 +39,7 @@
   "homepage": "https://github.com/Dubby20/Fast-Food-Fast#readme",
   "dependencies": {
     "babel-core": "^6.26.3",
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "coveralls": "^3.0.2",
